@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 05f38fc976de49d0a8bac11b0591b35c
+labels:
+- gvh
+- gvh_version-1.2.175
+- gvh_version-7.4.0
+- gvhp_exportpath-ExternalDependencyManager/Editor/1.2.175/Google.PackageManagerResolver.dll.mdb
+timeCreated: 1538009133
+licenseType: Pro
+DefaultImporter:
+  userData:
+  assetBundleName:
+  assetBundleVariant:
