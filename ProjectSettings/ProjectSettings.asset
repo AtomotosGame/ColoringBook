@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 23
-  productGUID: b736ba7a77d60d8478c2ef7c9d376a38
+  productGUID: 00000000000000000000000000000000
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -157,7 +157,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.DefaultCompany.ColoringBook
+    Android: com.northpick.coloringbookl
     Standalone: com.northpick.coloringbookl
     Tizen: biz.labhand.happyvillage
     iPhone: com.digismile.happyvillage
@@ -532,7 +532,7 @@ PlayerSettings:
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: AndroidPlayer
     m_APIs: 0b00000008000000
-    m_Automatic: 1
+    m_Automatic: 0
   - m_BuildTarget: WebGLSupport
     m_APIs: 0b00000008000000
     m_Automatic: 1
@@ -601,7 +601,6 @@ PlayerSettings:
   openGLRequireES32: 0
   m_TemplateCustomTags: {}
   mobileMTRendering:
-    Android: 0
     iPhone: 1
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality:
@@ -868,7 +867,7 @@ PlayerSettings:
     iPhone: 
   additionalCompilerArguments: {}
   platformArchitecture:
-    iPhone: 1
+    iPhone: 2
     tvOS: 1
   scriptingBackend:
     Android: 1
@@ -887,7 +886,7 @@ PlayerSettings:
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
   enableRoslynAnalyzers: 1
-  selectedPlatform: 2
+  selectedPlatform: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1

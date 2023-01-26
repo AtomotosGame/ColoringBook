@@ -34,9 +34,9 @@ public class MainManager : MonoBehaviour
         paintingMenu.menu.SetActive(isPainting);
         coloringMenu.menu.SetActive(!isPainting);
 
-        cameraObj.backgroundColor = isPainting ? paintingMenu.color : coloringMenu.color;
-        paintingMenu.image.sprite = isPainting ? paintingMenu.onEnableSprite : paintingMenu.onDisableSprite;
-        coloringMenu.image.sprite = !isPainting ? coloringMenu.onEnableSprite : coloringMenu.onDisableSprite;
+        // cameraObj.backgroundColor = isPainting ? paintingMenu.color : coloringMenu.color;
+        // paintingMenu.image.sprite = isPainting ? paintingMenu.onEnableSprite : paintingMenu.onDisableSprite;
+        // coloringMenu.image.sprite = !isPainting ? coloringMenu.onEnableSprite : coloringMenu.onDisableSprite;
     }
 
     public void PlaySoundClick()
