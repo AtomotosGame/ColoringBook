@@ -1,18 +1,5 @@
-// Copyright (C) 2020 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 #if UNITY_ANDROID
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,6 +11,7 @@ using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 #endif
 using UnityEngine;
+
 using GoogleMobileAds.Editor;
 
 #if UNITY_2018_1_OR_NEWER
@@ -32,20 +20,12 @@ public class ManifestProcessor : IPreprocessBuildWithReport
 public class ManifestProcessor : IPreprocessBuild
 #endif
 {
-    private const string MANIFEST_RELATIVE_PATH =
-            "Plugins/Android/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml";
+    private const string META_AD_MANAGER_APP = "com.google.android.gms.ads.AD_MANAGER_APP";
 
-    private const string METADATA_APPLICATION_ID  =
-            "com.google.android.gms.ads.APPLICATION_ID";
+    private const string META_APPLICATION_ID  = "com.google.android.gms.ads.APPLICATION_ID";
 
-    private const string METADATA_DELAY_APP_MEASUREMENT_INIT =
+    private const string META_DELAY_APP_MEASUREMENT_INIT =
             "com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT";
-
-    private const string METADATA_OPTIMIZE_INITIALIZATION =
-            "com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION";
-
-    private const string METADATA_OPTIMIZE_AD_LOADING =
-            "com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING";
 
     private XNamespace ns = "http://schemas.android.com/apk/res/android";
 
@@ -58,11 +38,7 @@ public class ManifestProcessor : IPreprocessBuild
 #endif
     {
         string manifestPath = Path.Combine(
-                Application.dataPath, MANIFEST_RELATIVE_PATH);
-        if (AssetDatabase.IsValidFolder("Packages/com.google.ads.mobile"))
-        {
-            manifestPath = Path.Combine("Packages/com.google.ads.mobile", MANIFEST_RELATIVE_PATH);
-        }
+                Application.dataPath, "Plugins/Android/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml");
 
         XDocument manifest = null;
         try
@@ -88,37 +64,83 @@ public class ManifestProcessor : IPreprocessBuild
             StopBuildWithMessage("AndroidManifest.xml is not valid. Try re-importing the plugin.");
         }
 
-        GoogleMobileAdsSettings instance = GoogleMobileAdsSettings.LoadInstance();
-        string appId = instance.GoogleMobileAdsAndroidAppId;
-
-        if (appId.Length == 0)
+        if (!GoogleMobileAdsSettings.Instance.IsAdManagerEnabled && !GoogleMobileAdsSettings.Instance.IsAdMobEnabled)
         {
-            StopBuildWithMessage(
-                "Android Google Mobile Ads app ID is empty. Please enter a valid app ID to run ads properly.");
+            GoogleMobileAdsSettingsEditor.OpenInspector();
+            StopBuildWithMessage("Neither Ad Manager nor AdMob is enabled yet.");
         }
 
         IEnumerable<XElement> metas = elemApplication.Descendants()
                 .Where( elem => elem.Name.LocalName.Equals("meta-data"));
 
-        SetMetadataElement(elemApplication,
-                           metas,
-                           METADATA_APPLICATION_ID,
-                           appId);
+        XElement elemAdManagerEnabled = GetMetaElement(metas, META_AD_MANAGER_APP);
+        if (GoogleMobileAdsSettings.Instance.IsAdManagerEnabled)
+        {
+            if (elemAdManagerEnabled == null)
+            {
+                elemApplication.Add(CreateMetaElement(META_AD_MANAGER_APP, true));
+            }
+            else
+            {
+                elemAdManagerEnabled.SetAttributeValue(ns + "value", true);
+            }
+        }
+        else
+        {
+            if (elemAdManagerEnabled != null)
+            {
+                elemAdManagerEnabled.Remove();
+            }
+        }
 
-        SetMetadataElement(elemApplication,
-                           metas,
-                           METADATA_DELAY_APP_MEASUREMENT_INIT,
-                           instance.DelayAppMeasurementInit);
+        XElement elemAdMobEnabled = GetMetaElement(metas, META_APPLICATION_ID);
+        if (GoogleMobileAdsSettings.Instance.IsAdMobEnabled)
+        {
+            string appId = GoogleMobileAdsSettings.Instance.AdMobAndroidAppId;
 
-        SetMetadataElement(elemApplication,
-                           metas,
-                           METADATA_OPTIMIZE_INITIALIZATION,
-                           instance.OptimizeInitialization);
+            if (appId.Length == 0)
+            {
+                StopBuildWithMessage(
+                    "Android AdMob app ID is empty. Please enter a valid app ID to run ads properly.");
+            }
 
-        SetMetadataElement(elemApplication,
-                           metas,
-                           METADATA_OPTIMIZE_AD_LOADING,
-                           instance.OptimizeAdLoading);
+            if (elemAdMobEnabled == null)
+            {
+                elemApplication.Add(CreateMetaElement(META_APPLICATION_ID, appId));
+            }
+            else
+            {
+                elemAdMobEnabled.SetAttributeValue(ns + "value", appId);
+            }
+        }
+        else
+        {
+            if (elemAdMobEnabled != null)
+            {
+                elemAdMobEnabled.Remove();
+            }
+        }
+
+        XElement elemDelayAppMeasurementInit =
+                GetMetaElement(metas, META_DELAY_APP_MEASUREMENT_INIT);
+        if (GoogleMobileAdsSettings.Instance.DelayAppMeasurementInit)
+        {
+            if (elemDelayAppMeasurementInit == null)
+            {
+                elemApplication.Add(CreateMetaElement(META_DELAY_APP_MEASUREMENT_INIT, true));
+            }
+            else
+            {
+                elemDelayAppMeasurementInit.SetAttributeValue(ns + "value", true);
+            }
+        }
+        else
+        {
+            if (elemDelayAppMeasurementInit != null)
+            {
+                elemDelayAppMeasurementInit.Remove();
+            }
+        }
 
         elemManifest.Save(manifestPath);
     }
@@ -146,72 +168,15 @@ public class ManifestProcessor : IPreprocessBuild
         return null;
     }
 
-    /// <summary>
-    /// Utility for setting a metadata element
-    /// </summary>
-    /// <param name="elemApplication">application element</param>
-    /// <param name="metas">all metadata elements</param>
-    /// <param name="metadataName">name of the element to set</param>
-    /// <param name="metadataValue">value to set</param>
-    private void SetMetadataElement(XElement elemApplication,
-                                    IEnumerable<XElement> metas,
-                                    string metadataName,
-                                    string metadataValue)
-    {
-        XElement element = GetMetaElement(metas, metadataName);
-        if (element == null)
-        {
-            elemApplication.Add(CreateMetaElement(metadataName, metadataValue));
-        }
-        else
-        {
-            element.SetAttributeValue(ns + "value", metadataValue);
-        }
-    }
-
-    /// <summary>
-    /// Utility for setting a metadata element
-    /// </summary>
-    /// <param name="elemApplication">application element</param>
-    /// <param name="metas">all metadata elements</param>
-    /// <param name="metadataName">name of the element to set</param>
-    /// <param name="metadataValue">value to set</param>
-    /// <param name="defaultValue">If metadataValue is default, node will be removed.</param>
-    private void SetMetadataElement(XElement elemApplication,
-                                    IEnumerable<XElement> metas,
-                                    string metadataName,
-                                    bool metadataValue,
-                                    bool defaultValue = false)
-    {
-        XElement element = GetMetaElement(metas, metadataName);
-        if (metadataValue != defaultValue)
-        {
-            if (element == null)
-            {
-                elemApplication.Add(CreateMetaElement(metadataName, metadataValue));
-            }
-            else
-            {
-                element.SetAttributeValue(ns + "value", metadataValue);
-            }
-        }
-        else
-        {
-            if (element != null)
-            {
-                element.Remove();
-            }
-        }
-    }
-
     private void StopBuildWithMessage(string message)
     {
         string prefix = "[GoogleMobileAds] ";
-    #if UNITY_2017_1_OR_NEWER
+#if UNITY_2017_1_OR_NEWER
         throw new BuildPlayerWindow.BuildMethodException(prefix + message);
-    #else
+#else
         throw new OperationCanceledException(prefix + message);
-    #endif
+#endif
     }
 }
+
 #endif

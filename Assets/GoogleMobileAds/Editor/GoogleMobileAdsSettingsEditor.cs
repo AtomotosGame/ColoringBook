@@ -1,121 +1,78 @@
+using System.IO;
+
 using UnityEditor;
 using UnityEngine;
 
 namespace GoogleMobileAds.Editor
 {
+
     [InitializeOnLoad]
     [CustomEditor(typeof(GoogleMobileAdsSettings))]
     public class GoogleMobileAdsSettingsEditor : UnityEditor.Editor
     {
-
-        SerializedProperty _appIdAndroid;
-        SerializedProperty _appIdiOS;
-        SerializedProperty _delayAppMeasurement;
-        SerializedProperty _optimizeInitialization;
-        SerializedProperty _optimizeAdLoading;
-        SerializedProperty _userTrackingUsageDescription;
-
-
         [MenuItem("Assets/Google Mobile Ads/Settings...")]
         public static void OpenInspector()
         {
-            Selection.activeObject = GoogleMobileAdsSettings.LoadInstance();
-        }
-
-        public void OnEnable()
-        {
-            _appIdAndroid = serializedObject.FindProperty("adMobAndroidAppId");
-            _appIdiOS = serializedObject.FindProperty("adMobIOSAppId");
-            _delayAppMeasurement = serializedObject.FindProperty("delayAppMeasurementInit");
-            _optimizeInitialization = serializedObject.FindProperty("optimizeInitialization");
-            _optimizeAdLoading = serializedObject.FindProperty("optimizeAdLoading");
-            _userTrackingUsageDescription =
-                    serializedObject.FindProperty("userTrackingUsageDescription");
+            Selection.activeObject = GoogleMobileAdsSettings.Instance;
         }
 
         public override void OnInspectorGUI()
         {
-            // Make sure the Settings object has all recent changes.
-            serializedObject.Update();
+            EditorGUILayout.LabelField("Google Ad Manager", EditorStyles.boldLabel);
+            GoogleMobileAdsSettings.Instance.IsAdManagerEnabled =
+                    EditorGUILayout.Toggle(new GUIContent("Enabled"),
+                            GoogleMobileAdsSettings.Instance.IsAdManagerEnabled);
 
-            var settings = (GoogleMobileAdsSettings)target;
+            EditorGUILayout.Separator();
 
-            if(settings == null)
+            EditorGUILayout.LabelField("Google AdMob", EditorStyles.boldLabel);
+            GoogleMobileAdsSettings.Instance.IsAdMobEnabled =
+                    EditorGUILayout.Toggle(new GUIContent("Enabled"),
+                            GoogleMobileAdsSettings.Instance.IsAdMobEnabled);
+
+            EditorGUILayout.Separator();
+
+            EditorGUI.BeginDisabledGroup(!GoogleMobileAdsSettings.Instance.IsAdMobEnabled);
+
+            EditorGUILayout.LabelField("AdMob App ID");
+
+            GoogleMobileAdsSettings.Instance.AdMobAndroidAppId =
+                    EditorGUILayout.TextField("Android",
+                            GoogleMobileAdsSettings.Instance.AdMobAndroidAppId);
+
+            GoogleMobileAdsSettings.Instance.AdMobIOSAppId =
+                    EditorGUILayout.TextField("iOS",
+                            GoogleMobileAdsSettings.Instance.AdMobIOSAppId);
+
+            if (GoogleMobileAdsSettings.Instance.IsAdMobEnabled)
             {
-              UnityEngine.Debug.LogError("GoogleMobileAdsSettings is null.");
-              return;
-            }
-
-            EditorGUILayout.LabelField("Google Mobile Ads App ID", EditorStyles.boldLabel);
-            EditorGUI.indentLevel++;
-
-            EditorGUILayout.PropertyField(_appIdAndroid, new GUIContent("Android"));
-
-            EditorGUILayout.PropertyField(_appIdiOS, new GUIContent("iOS"));
-
-            EditorGUILayout.HelpBox(
-                    "Google Mobile Ads App ID will look similar to this sample ID: ca-app-pub-3940256099942544~3347511713",
-                    MessageType.Info);
-
-            EditorGUI.indentLevel--;
-            EditorGUILayout.Separator();
-
-            EditorGUILayout.LabelField("Android optimization settings", EditorStyles.boldLabel);
-            EditorGUI.indentLevel++;
-
-            EditorGUI.BeginChangeCheck();
-
-            EditorGUILayout.PropertyField(_optimizeInitialization,
-                                          new GUIContent("Optimize initialization"));
-            if (settings.OptimizeInitialization) {
                 EditorGUILayout.HelpBox(
-                        "Initialization will be offloaded to a background thread.",
+                        "AdMob App ID will look similar to this sample ID: ca-app-pub-3940256099942544~3347511713",
                         MessageType.Info);
             }
 
-            EditorGUILayout.PropertyField(_optimizeAdLoading,
-                                          new GUIContent("Optimize ad loading"));
+            EditorGUILayout.Separator();
 
-            if (settings.OptimizeAdLoading) {
-                EditorGUILayout.HelpBox(
-                        "Ad loading tasks will be offloaded to a background thread.",
-                        MessageType.Info);
+            GoogleMobileAdsSettings.Instance.DelayAppMeasurementInit =
+                    EditorGUILayout.Toggle(new GUIContent("Delay app measurement"),
+                    GoogleMobileAdsSettings.Instance.DelayAppMeasurementInit);
+            if (GoogleMobileAdsSettings.Instance.DelayAppMeasurementInit) {
+                    EditorGUILayout.HelpBox(
+                            "Delays app measurement until you explicitly initialize the Mobile Ads SDK or load an ad.",
+                            MessageType.Info);
             }
+            EditorGUI.EndDisabledGroup();
 
-            EditorGUI.indentLevel--;
-            EditorGUILayout.Separator();
-
-            EditorGUILayout.LabelField("AdMob-specific settings", EditorStyles.boldLabel);
-            EditorGUI.indentLevel++;
-
-            EditorGUI.BeginChangeCheck();
-
-            EditorGUILayout.PropertyField(_delayAppMeasurement,
-                                          new GUIContent("Delay app measurement"));
-
-            if (settings.DelayAppMeasurementInit) {
-                EditorGUILayout.HelpBox(
-                        "Delays app measurement until you explicitly initialize the Mobile Ads SDK or load an ad.",
-                        MessageType.Info);
+            if (GUI.changed)
+            {
+                OnSettingsChanged();
             }
+        }
 
-            EditorGUI.indentLevel--;
-            EditorGUILayout.Separator();
-
-            EditorGUILayout.LabelField("UMP-specific settings", EditorStyles.boldLabel);
-            EditorGUI.indentLevel++;
-
-            EditorGUILayout.PropertyField(_userTrackingUsageDescription,
-                                          new GUIContent("User Tracking Usage Description"));
-
-            EditorGUILayout.HelpBox(
-                    "A message that informs the user why an iOS app is requesting permission to " +
-                    "use data for tracking the user or the device.", MessageType.Info);
-
-            EditorGUI.indentLevel--;
-            EditorGUILayout.Separator();
-
-            serializedObject.ApplyModifiedProperties();
+        private void OnSettingsChanged()
+        {
+            EditorUtility.SetDirty((GoogleMobileAdsSettings) target);
+            GoogleMobileAdsSettings.Instance.WriteSettingsToFile();
         }
     }
 }
