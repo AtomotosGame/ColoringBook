@@ -5,6 +5,7 @@ public class MainManager : MonoBehaviour
 {
     public Camera cameraObj;
     public MenuObject coloringMenu, paintingMenu;
+    public GameObject settingMenu;
 
     [System.Serializable]
     public class MenuObject
@@ -42,5 +43,9 @@ public class MainManager : MonoBehaviour
     public void PlaySoundClick()
     {
         MusicController.USE.PlaySound(MusicController.USE.clickSound);
+    }
+
+    public void OnSettingButtonClick() {
+        settingMenu.SetActive(!settingMenu.activeSelf);
     }
 }
