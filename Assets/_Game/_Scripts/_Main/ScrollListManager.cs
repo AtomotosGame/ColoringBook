@@ -603,8 +603,9 @@ public class ScrollListManager : MonoBehaviour
 
         PlayerPrefs.SetInt(saveIndexString, index);
         PlayerPrefs.Save();
-
-        if (transform.GetChild(index).childCount > 0)
+        Debug.Log(transform.gameObject.name);
+        Debug.Log(transform.Find("1").gameObject.name);
+        if (transform.Find(index.ToString()).GetChild(index).childCount > 0)
         {
             ColoringBookManager.maskTexIndex = index;
         }

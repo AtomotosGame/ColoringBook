@@ -6,6 +6,7 @@ public class MainManager : MonoBehaviour
     public Camera cameraObj;
     public MenuObject coloringMenu, paintingMenu;
     public GameObject settingMenu;
+    public GameObject returnBtn;
 
     [System.Serializable]
     public class MenuObject
@@ -13,6 +14,7 @@ public class MainManager : MonoBehaviour
         public GameObject menu;
         public Color color;
         public Image image;
+        public GameObject obj;
         public Sprite onEnableSprite;
         public Sprite onDisableSprite;
     }
@@ -32,8 +34,8 @@ public class MainManager : MonoBehaviour
         PlayerPrefs.SetInt("isPainting", isPainting ? 1 : 0);
         PlayerPrefs.Save();
 
-        paintingMenu.menu.SetActive(isPainting);
-        coloringMenu.menu.SetActive(!isPainting);
+        // paintingMenu.menu.SetActive(isPainting);
+        // coloringMenu.menu.SetActive(!isPainting);
 
         // cameraObj.backgroundColor = isPainting ? paintingMenu.color : coloringMenu.color;
         // paintingMenu.image.sprite = isPainting ? paintingMenu.onEnableSprite : paintingMenu.onDisableSprite;
@@ -47,5 +49,25 @@ public class MainManager : MonoBehaviour
 
     public void OnSettingButtonClick() {
         settingMenu.SetActive(!settingMenu.activeSelf);
+    }
+
+    public void OnDrawButtonClick() {
+        paintingMenu.menu.SetActive(!paintingMenu.menu.activeSelf);
+        paintingMenu.obj.SetActive(!paintingMenu.obj.activeSelf);
+        coloringMenu.obj.SetActive(!coloringMenu.obj.activeSelf);
+        returnBtn.SetActive(!returnBtn.activeSelf);
+    }
+    public void OnColorButtonClick() {
+        coloringMenu.menu.SetActive(!coloringMenu.menu.activeSelf);
+        paintingMenu.obj.SetActive(!paintingMenu.obj.activeSelf);
+        coloringMenu.obj.SetActive(!coloringMenu.obj.activeSelf);
+        returnBtn.SetActive(!returnBtn.activeSelf);
+    }
+    public void OnReturnButtonClick() {
+        coloringMenu.menu.SetActive(false);
+        paintingMenu.menu.SetActive(false);
+        paintingMenu.obj.SetActive(true);
+        coloringMenu.obj.SetActive(true);
+        returnBtn.SetActive(!returnBtn.activeSelf);
     }
 }
