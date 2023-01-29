@@ -7,6 +7,7 @@ public class MainManager : MonoBehaviour
     public MenuObject coloringMenu, paintingMenu;
     public GameObject settingMenu;
     public GameObject returnBtn;
+    public GameObject coloringSelectedMenu;
 
     [System.Serializable]
     public class MenuObject
@@ -66,6 +67,7 @@ public class MainManager : MonoBehaviour
     public void OnReturnButtonClick() {
         coloringMenu.menu.SetActive(false);
         paintingMenu.menu.SetActive(false);
+        coloringSelectedMenu.SetActive(false);
         paintingMenu.obj.SetActive(true);
         coloringMenu.obj.SetActive(true);
         returnBtn.SetActive(!returnBtn.activeSelf);
