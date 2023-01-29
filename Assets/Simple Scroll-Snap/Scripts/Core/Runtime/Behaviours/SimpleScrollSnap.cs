@@ -627,18 +627,30 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             if (nearestPanel != 0)
             {
                 GoToPanel(nearestPanel - 1);
+                var tempColor = previousButton.transform.GetComponent<Image>().color;
+                tempColor.a = 1f;
+                previousButton.transform.GetComponent<Image>().color = tempColor;
             }
             else
             {
                 if (useInfiniteScrolling)
                 {
                     GoToPanel(NumberOfPanels - 1);
+                    var tempColor = previousButton.transform.GetComponent<Image>().color;
+                    tempColor.a = 1f;
+                    previousButton.transform.GetComponent<Image>().color = tempColor;
                 }
                 else
                 {
                     GoToPanel(nearestPanel);
+                    var tempColor = previousButton.transform.GetComponent<Image>().color;
+                    tempColor.a = 0.5f;
+                    previousButton.transform.GetComponent<Image>().color = tempColor;
                 }
             }
+            var tempNextColor = nextButton.transform.GetComponent<Image>().color;
+            tempNextColor.a = 1f;
+            nextButton.transform.GetComponent<Image>().color = tempNextColor;
         }
         public void GoToNextPanel()
         {
@@ -646,18 +658,30 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             if (nearestPanel != (NumberOfPanels - 1))
             {
                 GoToPanel(nearestPanel + 1);
+                var tempNextColor = nextButton.transform.GetComponent<Image>().color;
+                tempNextColor.a = 1f;
+                nextButton.transform.GetComponent<Image>().color = tempNextColor;
             }
             else
             {
                 if (useInfiniteScrolling)
                 {
                     GoToPanel(0);
+                    var tempNextColor = nextButton.transform.GetComponent<Image>().color;
+                    tempNextColor.a = 1f;
+                    nextButton.transform.GetComponent<Image>().color = tempNextColor;
                 }
                 else
                 {
                     GoToPanel(nearestPanel);
+                    var tempNextColor = nextButton.transform.GetComponent<Image>().color;
+                    tempNextColor.a = 0.5f;
+                    nextButton.transform.GetComponent<Image>().color = tempNextColor;
                 }
             }
+            var tempColor = previousButton.transform.GetComponent<Image>().color;
+            tempColor.a = 1f;
+            previousButton.transform.GetComponent<Image>().color = tempColor;
         }
 
         public void AddToFront(GameObject panel)
