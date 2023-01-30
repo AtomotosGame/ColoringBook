@@ -100,6 +100,9 @@ public class ColoringBookManager : MonoBehaviour
 
     public List<PaintingButton> UndoRedoButtons; // 0.undo, 1.redo
     public PaintingButton brushSizeButton;
+    public PaintingButton brushSizeButton1;
+    public PaintingButton brushSizeButton2;
+    public PaintingButton brushSizeButton3;
     public PaintingButton musicButtonController; // 0.Off, 1.On
     public PaintingButton buttonCamera; // 0.Disable
 
@@ -358,7 +361,7 @@ public class ColoringBookManager : MonoBehaviour
 
         OnBrushButtonClicked(PanelColors[(int)drawMode].GetChild(0).GetComponent<ButtonScript>());
 
-        OnChangeBrushSizeButtonClicked();
+        OnChangeBrushSizeButtonClicked1();
 
         OnStickerButtonClicked(PanelColors[(int)DrawMode.Sticker].GetChild(0).GetComponent<ButtonScript>());
 
@@ -873,16 +876,44 @@ public class ColoringBookManager : MonoBehaviour
         texHeightMinusStickerHeight = texHeight - stickerHeight;
     }
 
-    public void OnChangeBrushSizeButtonClicked()
+    public void OnChangeBrushSizeButtonClicked1()
     {
-        brushSize += 8;
+        brushSize = 8;
 
-        if (brushSize > 24)
-        {
-            brushSize = 8;
-        }
+        brushSizeButton.image.sprite = brushSizeButton.sprites[0];
+        brushSizeButton1.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton2.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton3.image.sprite = brushSizeButton.sprites[1];
+    }
 
-        brushSizeButton.image.sprite = brushSizeButton.sprites[(brushSize - 8) / 8];
+    public void OnChangeBrushSizeButtonClicked2()
+    {
+        brushSize = 14;
+
+        brushSizeButton.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton1.image.sprite = brushSizeButton.sprites[0];
+        brushSizeButton2.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton3.image.sprite = brushSizeButton.sprites[1];
+    }
+    
+    public void OnChangeBrushSizeButtonClicked3()
+    {
+        brushSize = 20;
+
+        brushSizeButton.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton1.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton2.image.sprite = brushSizeButton.sprites[0];
+        brushSizeButton3.image.sprite = brushSizeButton.sprites[1];
+    }
+
+    public void OnChangeBrushSizeButtonClicked4()
+    {
+        brushSize = 26;
+
+        brushSizeButton.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton1.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton2.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton3.image.sprite = brushSizeButton.sprites[0];
     }
 
     public void OnUndoButtonClicked()
