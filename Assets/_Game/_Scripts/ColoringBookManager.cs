@@ -374,8 +374,8 @@ public class ColoringBookManager : MonoBehaviour
 
         foreach (RectTransform panel in PanelColors)
         {
-            panel.offsetMax = new Vector2(0, -h * 2);
-            panel.offsetMin = new Vector2(0, -h * 3);
+            panel.offsetMax = new Vector2(150, -h * 2);
+            panel.offsetMin = new Vector2(150, -h * 3);
         }
 
         panelEndPos = PanelColors[current].localPosition;
@@ -782,6 +782,9 @@ public class ColoringBookManager : MonoBehaviour
     {
         paintColor = sender.GetComponent<Image>().color;
         brushSizeButton.image.color = paintColor; // set current color image
+        brushSizeButton1.image.color = paintColor;
+        brushSizeButton2.image.color = paintColor;
+        brushSizeButton3.image.color = paintColor;
 
         switch (drawMode)
         {

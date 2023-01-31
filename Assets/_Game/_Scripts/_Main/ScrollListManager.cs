@@ -600,28 +600,19 @@ public class ScrollListManager : MonoBehaviour
     public void LoadGame(int index)
     {
         MusicController.USE.PlaySound(MusicController.USE.clickSound);
-        Debug.Log(1);
         PlayerPrefs.SetInt(saveIndexString, index);
-        Debug.Log(2);
         PlayerPrefs.Save();
-        Debug.Log(3);
 
         if (transform.GetChild(index).childCount > 0)
         {
-            Debug.Log(4);
             ColoringBookManager.maskTexIndex = index;
         }
         else
         {
-            Debug.Log(5);
             ColoringBookManager.maskTexIndex = -1;
         }
 
-        Debug.Log(6);
-
         ColoringBookManager.ID = saveIndexString + index.ToString();
-        Debug.Log(7);
         SceneManager.LoadScene("PaintScene");
-        Debug.Log(8);
     }
 }
