@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 #endif
 
-public class ScrollListManager : MonoBehaviour
+public class ScrollListManagerColoring : MonoBehaviour
 {
     public string saveIndexString = "ColoringList";
 
@@ -55,63 +55,63 @@ public class ScrollListManager : MonoBehaviour
         buttonPressed = false;
 
         // Set size of the cell
-        if (GetComponent<GridLayoutGroup>().cellSize == Vector2.zero)
-        {
-            Vector2 cellSize = new Vector2(cellSizeX, cellSizeY);
-            GetComponent<GridLayoutGroup>().cellSize = cellSize;
-        }
-        else
-        {
-            cellSizeX = GetComponent<GridLayoutGroup>().cellSize.x;
-            cellSizeY = GetComponent<GridLayoutGroup>().cellSize.y;
-        }
+        // if (GetComponent<GridLayoutGroup>().cellSize == Vector2.zero)
+        // {
+        //     Vector2 cellSize = new Vector2(cellSizeX, cellSizeY);
+        //     GetComponent<GridLayoutGroup>().cellSize = cellSize;
+        // }
+        // else
+        // {
+        //     cellSizeX = GetComponent<GridLayoutGroup>().cellSize.x;
+        //     cellSizeY = GetComponent<GridLayoutGroup>().cellSize.y;
+        // }
 
         // Set size delta of parent scroll rect so elements wouldn't be jumpy
-        transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(cellSizeX, cellSizeY);
+        // transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(cellSizeX, cellSizeY);
 
-        if (horizontalList)
-        {
-            transform.parent.GetComponent<ScrollRect>().horizontal = true;
-            transform.parent.GetComponent<ScrollRect>().vertical = false;
+        // if (horizontalList)
+        // {
+        //     transform.parent.GetComponent<ScrollRect>().horizontal = true;
+        //     transform.parent.GetComponent<ScrollRect>().vertical = false;
 
-            // Check if layout spacing differes from zero vector
-            if (GetComponent<GridLayoutGroup>().spacing == Vector2.zero)
-            {
-                Vector2 spacingVector = new Vector2(spacing, 0);
-                GetComponent<GridLayoutGroup>().spacing = spacingVector;
-            }
-            else
-            {
-                if (GetComponent<GridLayoutGroup>().spacing.x != 0)
-                    spacing = GetComponent<GridLayoutGroup>().spacing.x;
-            }
+        //     // Check if layout spacing differes from zero vector
+        //     if (GetComponent<GridLayoutGroup>().spacing == Vector2.zero)
+        //     {
+        //         Vector2 spacingVector = new Vector2(spacing, 0);
+        //         GetComponent<GridLayoutGroup>().spacing = spacingVector;
+        //     }
+        //     else
+        //     {
+        //         if (GetComponent<GridLayoutGroup>().spacing.x != 0)
+        //             spacing = GetComponent<GridLayoutGroup>().spacing.x;
+        //     }
 
-            GetComponent<GridLayoutGroup>().startAxis = GridLayoutGroup.Axis.Vertical;
-            GetComponent<GridLayoutGroup>().constraint = GridLayoutGroup.Constraint.FixedRowCount;
-            GetComponent<GridLayoutGroup>().constraintCount = 1;
-            currentCharCheckTemp = (cellSizeX + spacing) / 2;
-        }
-        else
-        {
-            transform.parent.GetComponent<ScrollRect>().horizontal = false;
-            transform.parent.GetComponent<ScrollRect>().vertical = true;
+        //     GetComponent<GridLayoutGroup>().startAxis = GridLayoutGroup.Axis.Vertical;
+        //     GetComponent<GridLayoutGroup>().constraint = GridLayoutGroup.Constraint.FixedRowCount;
+        //     GetComponent<GridLayoutGroup>().constraintCount = 1;
+        //     currentCharCheckTemp = (cellSizeX + spacing) / 2;
+        // }
+        // else
+        // {
+        //     transform.parent.GetComponent<ScrollRect>().horizontal = false;
+        //     transform.parent.GetComponent<ScrollRect>().vertical = true;
 
-            if (GetComponent<GridLayoutGroup>().spacing == Vector2.zero)
-            {
-                Vector2 spacingVector = new Vector2(0, spacing);
-                GetComponent<GridLayoutGroup>().spacing = spacingVector;
-            }
-            else
-            {
-                if (GetComponent<GridLayoutGroup>().spacing.y != 0)
-                    spacing = GetComponent<GridLayoutGroup>().spacing.y;
-            }
+        //     if (GetComponent<GridLayoutGroup>().spacing == Vector2.zero)
+        //     {
+        //         Vector2 spacingVector = new Vector2(0, spacing);
+        //         GetComponent<GridLayoutGroup>().spacing = spacingVector;
+        //     }
+        //     else
+        //     {
+        //         if (GetComponent<GridLayoutGroup>().spacing.y != 0)
+        //             spacing = GetComponent<GridLayoutGroup>().spacing.y;
+        //     }
 
-            GetComponent<GridLayoutGroup>().startAxis = GridLayoutGroup.Axis.Horizontal;
-            GetComponent<GridLayoutGroup>().constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            GetComponent<GridLayoutGroup>().constraintCount = 1;
-            currentCharCheckTemp = (cellSizeY + spacing) / 2;
-        }
+        //     GetComponent<GridLayoutGroup>().startAxis = GridLayoutGroup.Axis.Horizontal;
+        //     GetComponent<GridLayoutGroup>().constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        //     GetComponent<GridLayoutGroup>().constraintCount = 1;
+        //     currentCharCheckTemp = (cellSizeY + spacing) / 2;
+        // }
 
         snapPositions = new List<float>();
         listOfCharacters = new List<GameObject>();
@@ -121,46 +121,46 @@ public class ScrollListManager : MonoBehaviour
             listOfCharacters.Add(t.gameObject);
 
         // Set transform rect position and size depending of number of characters and spacing
-        if (horizontalList)
-        {
-            GetComponent<RectTransform>().sizeDelta = new Vector2(listOfCharacters.Count * cellSizeX + (listOfCharacters.Count - 1) * spacing, cellSizeY);
-            GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().sizeDelta.x - 2 * spacing, GetComponent<RectTransform>().anchoredPosition.y);
+        // if (horizontalList)
+        // {
+        //     GetComponent<RectTransform>().sizeDelta = new Vector2(listOfCharacters.Count * cellSizeX + (listOfCharacters.Count - 1) * spacing, cellSizeY);
+        //     GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().sizeDelta.x - 2 * spacing, GetComponent<RectTransform>().anchoredPosition.y);
 
-            float startSnapPosition = GetComponent<RectTransform>().sizeDelta.x / 2 - cellSizeX / 2;
-            snapPositions.Add(startSnapPosition);
+        //     float startSnapPosition = GetComponent<RectTransform>().sizeDelta.x / 2 - cellSizeX / 2;
+        //     snapPositions.Add(startSnapPosition);
 
-            // Set fist character to be of focused scale
-            listOfCharacters[0].transform.localScale = new Vector3(focusedElementScale, focusedElementScale, 1);
+        //     // Set fist character to be of focused scale
+        //     listOfCharacters[0].transform.localScale = new Vector3(focusedElementScale, focusedElementScale, 1);
 
-            for (int i = 1; i < listOfCharacters.Count; i++)
-            {
-                startSnapPosition -= cellSizeX + spacing;
-                snapPositions.Add(startSnapPosition);
+        //     for (int i = 1; i < listOfCharacters.Count; i++)
+        //     {
+        //         startSnapPosition -= cellSizeX + spacing;
+        //         snapPositions.Add(startSnapPosition);
 
-                // Set scale for not focused elements to be scale
-                listOfCharacters[i].transform.localScale = new Vector3(unfocusedElementsScale, unfocusedElementsScale, 1);
-            }
-        }
-        else
-        {
-            GetComponent<RectTransform>().sizeDelta = new Vector2(cellSizeX, listOfCharacters.Count * cellSizeY + (listOfCharacters.Count - 1) * spacing);
-            GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().anchoredPosition.x, -(GetComponent<RectTransform>().sizeDelta.y - 2 * spacing));
+        //         // Set scale for not focused elements to be scale
+        //         listOfCharacters[i].transform.localScale = new Vector3(unfocusedElementsScale, unfocusedElementsScale, 1);
+        //     }
+        // }
+        // else
+        // {
+        //     GetComponent<RectTransform>().sizeDelta = new Vector2(cellSizeX, listOfCharacters.Count * cellSizeY + (listOfCharacters.Count - 1) * spacing);
+        //     GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().anchoredPosition.x, -(GetComponent<RectTransform>().sizeDelta.y - 2 * spacing));
 
-            float startSnapPosition = GetComponent<RectTransform>().sizeDelta.y / 2 - cellSizeY / 2;
-            snapPositions.Add(startSnapPosition);
+        //     float startSnapPosition = GetComponent<RectTransform>().sizeDelta.y / 2 - cellSizeY / 2;
+        //     snapPositions.Add(startSnapPosition);
 
-            // Set fist character to be of focused scale
-            listOfCharacters[0].transform.localScale = new Vector3(focusedElementScale, focusedElementScale, 1);
+        //     // Set fist character to be of focused scale
+        //     listOfCharacters[0].transform.localScale = new Vector3(focusedElementScale, focusedElementScale, 1);
 
-            for (int i = 1; i < listOfCharacters.Count; i++)
-            {
-                startSnapPosition -= cellSizeY + spacing;
-                snapPositions.Add(startSnapPosition);
+        //     for (int i = 1; i < listOfCharacters.Count; i++)
+        //     {
+        //         startSnapPosition -= cellSizeY + spacing;
+        //         snapPositions.Add(startSnapPosition);
 
-                // Set scale for not focused elements to be scale
-                listOfCharacters[i].transform.localScale = new Vector3(unfocusedElementsScale, unfocusedElementsScale, 1);
-            }
-        }
+        //         // Set scale for not focused elements to be scale
+        //         listOfCharacters[i].transform.localScale = new Vector3(unfocusedElementsScale, unfocusedElementsScale, 1);
+        //     }
+        // }
 
         SetNewPos(firstPos);
 
