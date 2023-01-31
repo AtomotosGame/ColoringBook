@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class MusicController : MonoBehaviour
 {
     public AudioClip clickSound, cameraSound;
+
+    public GameObject MusicSlider;
+    public GameObject SoundSlider;
 
     public static MusicController USE;
 
@@ -43,4 +47,14 @@ public class MusicController : MonoBehaviour
     {
         soundSource.PlayOneShot(clip);
     }
+
+    public void onChangeMusic() {
+        transform.GetComponent<AudioSource>().volume = MusicSlider.transform.GetComponent <Slider> ().value;
+    }
+
+    public void onChangedSound() {
+        soundSource.volume = SoundSlider.transform.GetComponent <Slider> ().value;
+    }
+
+
 }

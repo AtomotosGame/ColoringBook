@@ -254,52 +254,52 @@ public class ScrollListManagerColoring : MonoBehaviour
     // Determining closesst snap point -349 is half distance - 1 and 350 is half distance
     private void SetLerpPositionToClosestSnapPoint()
     {
-        for (int i = 0; i < snapPositions.Count; i++)
-        {
-            if (horizontalList)
-            {
-                if (transform.localPosition.x > snapPositions[i] - currentCharCheckTemp - 1 && transform.localPosition.x <= snapPositions[i] + currentCharCheckTemp)
-                {
-                    newLerpPosition = new Vector3(snapPositions[i], 0, 0);
-                    lerping = true;
-                    currentCharacter = i;
-                    break;
-                }
-            }
-            else
-            {
-                if (transform.localPosition.y > snapPositions[i] - currentCharCheckTemp - 1 && transform.localPosition.y <= snapPositions[i] + currentCharCheckTemp)
-                {
-                    newLerpPosition = new Vector3(0, snapPositions[i], 0);
-                    lerping = true;
-                    currentCharacter = listOfCharacters.Count - i - 1;
-                    break;
-                }
-            }
-        }
+        // for (int i = 0; i < snapPositions.Count; i++)
+        // {
+        //     if (horizontalList)
+        //     {
+        //         if (transform.localPosition.x > snapPositions[i] - currentCharCheckTemp - 1 && transform.localPosition.x <= snapPositions[i] + currentCharCheckTemp)
+        //         {
+        //             newLerpPosition = new Vector3(snapPositions[i], 0, 0);
+        //             lerping = true;
+        //             currentCharacter = i;
+        //             break;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         if (transform.localPosition.y > snapPositions[i] - currentCharCheckTemp - 1 && transform.localPosition.y <= snapPositions[i] + currentCharCheckTemp)
+        //         {
+        //             newLerpPosition = new Vector3(0, snapPositions[i], 0);
+        //             lerping = true;
+        //             currentCharacter = listOfCharacters.Count - i - 1;
+        //             break;
+        //         }
+        //     }
+        // }
     }
 
     private void SetCurrentCharacter()
     {
-        for (int i = 0; i < snapPositions.Count; i++)
-        {
-            if (horizontalList)
-            {
-                if (transform.localPosition.x > snapPositions[i] - currentCharCheckTemp - 1 && transform.localPosition.x <= snapPositions[i] + currentCharCheckTemp)
-                {
-                    currentCharacter = i;
-                    break;
-                }
-            }
-            else
-            {
-                if (transform.localPosition.y > snapPositions[i] - currentCharCheckTemp - 1 && transform.localPosition.y <= snapPositions[i] + currentCharCheckTemp)
-                {
-                    currentCharacter = listOfCharacters.Count - i - 1;
-                    break;
-                }
-            }
-        }
+        // for (int i = 0; i < snapPositions.Count; i++)
+        // {
+        //     if (horizontalList)
+        //     {
+        //         if (transform.localPosition.x > snapPositions[i] - currentCharCheckTemp - 1 && transform.localPosition.x <= snapPositions[i] + currentCharCheckTemp)
+        //         {
+        //             currentCharacter = i;
+        //             break;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         if (transform.localPosition.y > snapPositions[i] - currentCharCheckTemp - 1 && transform.localPosition.y <= snapPositions[i] + currentCharCheckTemp)
+        //         {
+        //             currentCharacter = listOfCharacters.Count - i - 1;
+        //             break;
+        //         }
+        //     }
+        // }
     }
 
     // This function purpouse is to wait a little before pressing button again
@@ -399,202 +399,202 @@ public class ScrollListManagerColoring : MonoBehaviour
 
     private void LateUpdate()
     {
-        // If we are holding button than do not lerp
-        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) && !buttonPressed)
-        {
-            SetCurrentCharacter();
-            newLerpPosition = transform.localPosition;
-        }
+        // // If we are holding button than do not lerp
+        // if ((Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) && !buttonPressed)
+        // {
+        //     SetCurrentCharacter();
+        //     newLerpPosition = transform.localPosition;
+        // }
 
-        // If not lerping and velocityis small enough find closest snap point and lerp to it
-        if (horizontalList)
-        {
-            if (!lerping && Mathf.Abs(transform.parent.GetComponent<ScrollRect>().velocity.x) >= 0f && Mathf.Abs(transform.parent.GetComponent<ScrollRect>().velocity.x) < 100f)
-            {
-                SetLerpPositionToClosestSnapPoint();
-            }
-            else
-            {
-                SetCurrentCharacter();
-            }
-        }
-        else
-        {
-            if (!lerping && Mathf.Abs(transform.parent.GetComponent<ScrollRect>().velocity.y) >= 0f && Mathf.Abs(transform.parent.GetComponent<ScrollRect>().velocity.y) < 100f)
-            {
-                SetLerpPositionToClosestSnapPoint();
-            }
-            else
-            {
-                SetCurrentCharacter();
-            }
-        }
+        // // If not lerping and velocityis small enough find closest snap point and lerp to it
+        // if (horizontalList)
+        // {
+        //     if (!lerping && Mathf.Abs(transform.parent.GetComponent<ScrollRect>().velocity.x) >= 0f && Mathf.Abs(transform.parent.GetComponent<ScrollRect>().velocity.x) < 100f)
+        //     {
+        //         SetLerpPositionToClosestSnapPoint();
+        //     }
+        //     else
+        //     {
+        //         SetCurrentCharacter();
+        //     }
+        // }
+        // else
+        // {
+        //     if (!lerping && Mathf.Abs(transform.parent.GetComponent<ScrollRect>().velocity.y) >= 0f && Mathf.Abs(transform.parent.GetComponent<ScrollRect>().velocity.y) < 100f)
+        //     {
+        //         SetLerpPositionToClosestSnapPoint();
+        //     }
+        //     else
+        //     {
+        //         SetCurrentCharacter();
+        //     }
+        // }
 
-        // Set appropriate for elements in list according to distance from current snap point
-        if (horizontalList)
-        {
-            if (currentCharacter == 0)
-            {
-                float sb = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x - currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
-                float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        // // Set appropriate for elements in list according to distance from current snap point
+        // if (horizontalList)
+        // {
+        //     if (currentCharacter == 0)
+        //     {
+        //         float sb = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x - currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
 
-                if (s <= unfocusedElementsScale || s > focusedElementScale)
-                    s = unfocusedElementsScale;
+        //         if (s <= unfocusedElementsScale || s > focusedElementScale)
+        //             s = unfocusedElementsScale;
 
-                if (sb <= unfocusedElementsScale || sb > focusedElementScale)
-                    sb = unfocusedElementsScale;
+        //         if (sb <= unfocusedElementsScale || sb > focusedElementScale)
+        //             sb = unfocusedElementsScale;
 
-                listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
+        //         listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
 
-                listOfCharacters[currentCharacter + 1].transform.localScale = new Vector3(sb, sb, 1);
-            }
-            else if (currentCharacter == listOfCharacters.Count - 1)
-            {
-                float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
-                float sf = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x + currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         listOfCharacters[currentCharacter + 1].transform.localScale = new Vector3(sb, sb, 1);
+        //     }
+        //     else if (currentCharacter == listOfCharacters.Count - 1)
+        //     {
+        //         float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         float sf = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x + currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
 
-                if (s <= unfocusedElementsScale || s > focusedElementScale)
-                    s = unfocusedElementsScale;
+        //         if (s <= unfocusedElementsScale || s > focusedElementScale)
+        //             s = unfocusedElementsScale;
 
-                if (sf <= unfocusedElementsScale || sf > focusedElementScale)
-                    sf = unfocusedElementsScale;
+        //         if (sf <= unfocusedElementsScale || sf > focusedElementScale)
+        //             sf = unfocusedElementsScale;
 
-                listOfCharacters[currentCharacter - 1].transform.localScale = new Vector3(sf, sf, 1);
-                listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
-            }
-            else
-            {
-                float sb = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x - currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
-                float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
-                float sf = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x + currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         listOfCharacters[currentCharacter - 1].transform.localScale = new Vector3(sf, sf, 1);
+        //         listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
+        //     }
+        //     else
+        //     {
+        //         float sb = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x - currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         float sf = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] - transform.localPosition.x + currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
 
-                if (s <= unfocusedElementsScale || s > focusedElementScale)
-                    s = unfocusedElementsScale;
+        //         if (s <= unfocusedElementsScale || s > focusedElementScale)
+        //             s = unfocusedElementsScale;
 
-                if (sb <= unfocusedElementsScale || sb > focusedElementScale)
-                    sb = unfocusedElementsScale;
+        //         if (sb <= unfocusedElementsScale || sb > focusedElementScale)
+        //             sb = unfocusedElementsScale;
 
-                if (sf <= unfocusedElementsScale || sf > focusedElementScale)
-                    sf = unfocusedElementsScale;
+        //         if (sf <= unfocusedElementsScale || sf > focusedElementScale)
+        //             sf = unfocusedElementsScale;
 
-                listOfCharacters[currentCharacter - 1].transform.localScale = new Vector3(sf, sf, 1);
-                listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
-                listOfCharacters[currentCharacter + 1].transform.localScale = new Vector3(sb, sb, 1);
-            }
-        }
-        else
-        {
-            if (currentCharacter == 0)
-            {
-                float sb = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y - currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
-                float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         listOfCharacters[currentCharacter - 1].transform.localScale = new Vector3(sf, sf, 1);
+        //         listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
+        //         listOfCharacters[currentCharacter + 1].transform.localScale = new Vector3(sb, sb, 1);
+        //     }
+        // }
+        // else
+        // {
+        //     if (currentCharacter == 0)
+        //     {
+        //         float sb = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y - currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
 
-                if (s <= unfocusedElementsScale || s > focusedElementScale)
-                    s = unfocusedElementsScale;
+        //         if (s <= unfocusedElementsScale || s > focusedElementScale)
+        //             s = unfocusedElementsScale;
 
-                if (sb <= unfocusedElementsScale || sb > focusedElementScale)
-                    sb = unfocusedElementsScale;
+        //         if (sb <= unfocusedElementsScale || sb > focusedElementScale)
+        //             sb = unfocusedElementsScale;
 
-                listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
-                listOfCharacters[currentCharacter + 1].transform.localScale = new Vector3(sb, sb, 1);
-            }
-            else if (currentCharacter == listOfCharacters.Count - 1)
-            {
-                float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
-                float sf = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y + currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
+        //         listOfCharacters[currentCharacter + 1].transform.localScale = new Vector3(sb, sb, 1);
+        //     }
+        //     else if (currentCharacter == listOfCharacters.Count - 1)
+        //     {
+        //         float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         float sf = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y + currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
 
-                if (s <= unfocusedElementsScale || s > focusedElementScale)
-                    s = unfocusedElementsScale;
+        //         if (s <= unfocusedElementsScale || s > focusedElementScale)
+        //             s = unfocusedElementsScale;
 
-                if (sf <= unfocusedElementsScale || sf > focusedElementScale)
-                    sf = unfocusedElementsScale;
+        //         if (sf <= unfocusedElementsScale || sf > focusedElementScale)
+        //             sf = unfocusedElementsScale;
 
-                listOfCharacters[currentCharacter - 1].transform.localScale = new Vector3(sf, sf, 1);
-                listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
-            }
-            else
-            {
-                float sb = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y - currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
-                float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
-                float sf = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y + currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         listOfCharacters[currentCharacter - 1].transform.localScale = new Vector3(sf, sf, 1);
+        //         listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
+        //     }
+        //     else
+        //     {
+        //         float sb = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y - currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         float s = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
+        //         float sf = Mathf.Abs(Mathf.Abs(snapPositions[currentCharacter] + transform.localPosition.y + currentCharCheckTemp * 2) * (focusedElementScale - unfocusedElementsScale) / Mathf.Abs(currentCharCheckTemp * 2) - focusedElementScale);
 
-                if (s <= unfocusedElementsScale || s > focusedElementScale)
-                    s = unfocusedElementsScale;
+        //         if (s <= unfocusedElementsScale || s > focusedElementScale)
+        //             s = unfocusedElementsScale;
 
-                if (sb <= unfocusedElementsScale || sb > focusedElementScale)
-                    sb = unfocusedElementsScale;
+        //         if (sb <= unfocusedElementsScale || sb > focusedElementScale)
+        //             sb = unfocusedElementsScale;
 
-                if (sf <= unfocusedElementsScale || sf > focusedElementScale)
-                    sf = unfocusedElementsScale;
+        //         if (sf <= unfocusedElementsScale || sf > focusedElementScale)
+        //             sf = unfocusedElementsScale;
 
-                listOfCharacters[currentCharacter - 1].transform.localScale = new Vector3(sf, sf, 1);
-                listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
-                listOfCharacters[currentCharacter + 1].transform.localScale = new Vector3(sb, sb, 1);
-            }
-        }
+        //         listOfCharacters[currentCharacter - 1].transform.localScale = new Vector3(sf, sf, 1);
+        //         listOfCharacters[currentCharacter].transform.localScale = new Vector3(s, s, 1);
+        //         listOfCharacters[currentCharacter + 1].transform.localScale = new Vector3(sb, sb, 1);
+        //     }
+        // }
 
-        // If we let the mouse button and velocity small enough
-        if (lerping)
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, newLerpPosition, lerpingSpeed);
+        // // If we let the mouse button and velocity small enough
+        // if (lerping)
+        // {
+        //     transform.localPosition = Vector3.Lerp(transform.localPosition, newLerpPosition, lerpingSpeed);
 
-            if (Vector3.Distance(transform.localPosition, newLerpPosition) < 1f)
-            {
-                transform.localPosition = newLerpPosition;
-                transform.parent.GetComponent<ScrollRect>().velocity = new Vector3(0, 0, 0);
-                lerping = false;
+        //     if (Vector3.Distance(transform.localPosition, newLerpPosition) < 1f)
+        //     {
+        //         transform.localPosition = newLerpPosition;
+        //         transform.parent.GetComponent<ScrollRect>().velocity = new Vector3(0, 0, 0);
+        //         lerping = false;
 
-                for (int i = 0; i < listOfCharacters.Count; i++)
-                {
-                    if (i != currentCharacter)
-                        listOfCharacters[i].transform.localScale = new Vector3(unfocusedElementsScale, unfocusedElementsScale, 1);
-                }
+        //         for (int i = 0; i < listOfCharacters.Count; i++)
+        //         {
+        //             if (i != currentCharacter)
+        //                 listOfCharacters[i].transform.localScale = new Vector3(unfocusedElementsScale, unfocusedElementsScale, 1);
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
-        if (horizontalList)
-        {
-            // Updating arrow buttons
-            if (transform.localPosition.x > snapPositions[snapPositions.Count - 1] - spacing / 2)
-            {
-                SetButtonActive(forwardButton);
-            }
-            else
-            {
-                SetButtonInactive(forwardButton);
-            }
+        // if (horizontalList)
+        // {
+        //     // Updating arrow buttons
+        //     if (transform.localPosition.x > snapPositions[snapPositions.Count - 1] - spacing / 2)
+        //     {
+        //         SetButtonActive(forwardButton);
+        //     }
+        //     else
+        //     {
+        //         SetButtonInactive(forwardButton);
+        //     }
 
-            if (transform.localPosition.x < snapPositions[0] + spacing / 2)
-            {
-                SetButtonActive(backwardButton);
-            }
-            else
-            {
-                SetButtonInactive(backwardButton);
-            }
-        }
-        else
-        {
-            // Updating arrow buttons
-            if (transform.localPosition.y > snapPositions[snapPositions.Count - 1] - spacing / 2)
-            {
-                SetButtonActive(backwardButton);
-            }
-            else
-            {
-                SetButtonInactive(backwardButton);
-            }
+        //     if (transform.localPosition.x < snapPositions[0] + spacing / 2)
+        //     {
+        //         SetButtonActive(backwardButton);
+        //     }
+        //     else
+        //     {
+        //         SetButtonInactive(backwardButton);
+        //     }
+        // }
+        // else
+        // {
+        //     // Updating arrow buttons
+        //     if (transform.localPosition.y > snapPositions[snapPositions.Count - 1] - spacing / 2)
+        //     {
+        //         SetButtonActive(backwardButton);
+        //     }
+        //     else
+        //     {
+        //         SetButtonInactive(backwardButton);
+        //     }
 
-            if (transform.localPosition.y < snapPositions[0] + spacing / 2)
-            {
-                SetButtonActive(forwardButton);
-            }
-            else
-            {
-                SetButtonInactive(forwardButton);
-            }
-        }
+        //     if (transform.localPosition.y < snapPositions[0] + spacing / 2)
+        //     {
+        //         SetButtonActive(forwardButton);
+        //     }
+        //     else
+        //     {
+        //         SetButtonInactive(forwardButton);
+        //     }
+        // }
     }
 
     public void LoadGame(int index)
@@ -603,16 +603,15 @@ public class ScrollListManagerColoring : MonoBehaviour
         PlayerPrefs.SetInt(saveIndexString, index);
         PlayerPrefs.Save();
 
-        if (transform.GetChild(index).childCount > 0)
-        {
+
+        // if (transform.GetChild(index).childCount > 0)
+        // {
             ColoringBookManager.maskTexIndex = index;
-        }
-        else
-        {
-            ColoringBookManager.maskTexIndex = -1;
-        }
-        Debug.Log(saveIndexString);
-        Debug.Log(index.ToString());
+        // }
+        // else
+        // {
+            // ColoringBookManager.maskTexIndex = -1;
+        // }
         ColoringBookManager.ID = saveIndexString + index.ToString();
         SceneManager.LoadScene("PaintScene");
     }
