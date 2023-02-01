@@ -241,17 +241,15 @@ public class ColoringBookManager : MonoBehaviour
 
         // undo system
         undoPixels = new List<byte[]>();
-        undoPixels.Add(new byte[texWidth * texHeight * 4]);
+        undoPixels.Add(new byte[texWidth * texHeight * 9]);
         RedoIndex = 0;
 
         byte[] loadPixels = new byte[texWidth * texHeight * 4];
         loadPixels = LoadImage(ID);
-
         if (loadPixels != null)
         {
             pixels = loadPixels;
             System.Array.Copy(pixels, undoPixels[0], pixels.Length);
-
             tex.LoadRawTextureData(pixels);
             tex.Apply(false);
         }
@@ -466,7 +464,7 @@ public class ColoringBookManager : MonoBehaviour
                 undoPixels.RemoveRange(undoPixels.Count - RedoIndex, RedoIndex);
             }
 
-            undoPixels.Add(new byte[texWidth * texHeight * 4]);
+            undoPixels.Add(new byte[texWidth * texHeight * 9]);
             System.Array.Copy(pixels, undoPixels[undoPixels.Count - 1], pixels.Length);
 
             RedoIndex = 0;
@@ -538,7 +536,7 @@ public class ColoringBookManager : MonoBehaviour
                     DrawAdditiveLine(pixelUVOld, pixelUV);
                     break;
 
-                //case DrawMode.Sticker:
+                //case DrawMode.Sticker:f
                 //    DrawLineWithSticker(pixelUVOld, pixelUV);
                 //    break;
 
@@ -968,7 +966,7 @@ public class ColoringBookManager : MonoBehaviour
                 RedoIndex = 0;
             }
 
-            undoPixels.Add(new byte[texWidth * texHeight * 4]);
+            undoPixels.Add(new byte[texWidth * texHeight * 9]);
             System.Array.Copy(pixels, undoPixels[undoPixels.Count - 1], pixels.Length);
         }
     }

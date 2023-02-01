@@ -37,8 +37,8 @@ public class ScrollListManagerColoring : MonoBehaviour
     private int currentCharacter;
     private int firstPos = 0;
 
-    private int texWidth = 1024;
-    private int texHeight = 576;
+    private int texWidth = 512;
+    private int texHeight = 512;
 
     private static Dictionary<string, Sprite> allTexturesDic;
 
@@ -162,7 +162,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         //     }
         // }
 
-        SetNewPos(firstPos);
+        // SetNewPos(firstPos);
 
         LoadAllTexture();
     }
@@ -186,9 +186,11 @@ public class ScrollListManagerColoring : MonoBehaviour
 
     private void LoadAllTexture()
     {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + i.ToString(), saveIndexString + i.ToString() == ColoringBookManager.ID);
+
+        for (int j = 0; j < transform.childCount; j++){
+            for (int i = 0; i < transform.GetChild(j).childCount; i++){
+                transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID);
+            }
         }
     }
 
@@ -200,7 +202,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         }
         else
         {
-            byte[] loadPixels = new byte[texWidth * texHeight * 4];
+            byte[] loadPixels = new byte[texWidth * texHeight * 9];
 
 #if UNITY_WEBGL
             string file = Application.persistentDataPath + "/Landscape" + key + ".sav";
