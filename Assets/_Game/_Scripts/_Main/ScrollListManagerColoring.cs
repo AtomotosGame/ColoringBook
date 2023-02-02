@@ -10,7 +10,8 @@ using System.IO;
 
 public class ScrollListManagerColoring : MonoBehaviour
 {
-    public static string saveIndexString;
+    public string saveIndexString;
+    public static string saveIndexStringStatic;
     [Space]
     public bool horizontalList;
 
@@ -43,7 +44,7 @@ public class ScrollListManagerColoring : MonoBehaviour
 
     private void Awake()
     {
-
+        saveIndexStringStatic = saveIndexString;
 
         if (allTexturesDic == null)
         {
@@ -603,8 +604,8 @@ public class ScrollListManagerColoring : MonoBehaviour
     public static void LoadGame(int index)
     {
         MusicController.USE.PlaySound(MusicController.USE.clickSound);
-        Debug.Log("saveIndexString " + saveIndexString);
-        PlayerPrefs.SetInt(saveIndexString, index);
+        Debug.Log("saveIndexStringStatic " + saveIndexStringStatic);
+        PlayerPrefs.SetInt(saveIndexStringStatic, index);
         PlayerPrefs.Save();
 
         
@@ -613,7 +614,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         }
 
 
-        if (saveIndexString == "ColoringList" || index <= PlayerPrefs.GetInt("allDrawItem") )
+        if (saveIndexStringStatic == "ColoringList" || index <= PlayerPrefs.GetInt("allDrawItem") )
         {
             ColoringBookManager.maskTexIndex = index;
         }
@@ -622,10 +623,10 @@ public class ScrollListManagerColoring : MonoBehaviour
             ColoringBookManager.maskTexIndex = -1;
         }
 
-        // PlayerPrefs.SetInt(saveIndexString, 0);
+        // PlayerPrefs.SetInt(saveIndexStringStatic, 0);
         // PlayerPrefs.SetInt("allDrawItem", 0);
 
-        ColoringBookManager.ID = saveIndexString + index.ToString();
+        ColoringBookManager.ID = saveIndexStringStatic + index.ToString();
         Debug.Log(ColoringBookManager.ID);
         SceneManager.LoadScene("PaintScene");
     }
