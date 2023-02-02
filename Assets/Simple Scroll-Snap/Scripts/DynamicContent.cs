@@ -15,7 +15,8 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         [SerializeField] private ToggleGroup toggleGroup;
         [SerializeField] private InputField addInputField, removeInputField;
         [SerializeField] private SimpleScrollSnap scrollSnap;
-        
+        public string saveIndexString = "allDrawItem";
+        public Transform ScrolllistColoringObj;
 
         private float toggleWidth;
         #endregion
@@ -26,13 +27,30 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             toggleWidth = (togglePrefab.transform as RectTransform).sizeDelta.x * (Screen.width / 2048f); ;
         }
 
+        void Start() {
+            
+            createPanels();
+            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllTexture();
+            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RemoveItems();
+        }
+
+        public void createPanels() {
+            Debug.Log("allDrawItem : " +  PlayerPrefs.GetInt("allDrawItem") );
+            int allItemNum = PlayerPrefs.GetInt(saveIndexString);
+            int panelNum =  allItemNum == 0 ? 1 : (int) (Mathf.Floor(allItemNum/10)) + 1;
+
+            for (int i = 0; i < panelNum; i++) {  
+                AddAtIndex();
+            }
+            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RenamePanel();
+        }
+
         public void Add(int index)
         {
             // Pagination
             Toggle toggle = Instantiate(togglePrefab, scrollSnap.Pagination.transform.position + new Vector3(toggleWidth * (scrollSnap.NumberOfPanels + 1), 0, 0), Quaternion.identity, scrollSnap.Pagination.transform);
             toggle.group = toggleGroup;
             scrollSnap.Pagination.transform.position -= new Vector3(toggleWidth / 2f, 0, 0);
-            Debug.Log(ScrollListManagerColoring.allTexturesDic.Count);
             // Panel
             // panelPrefab.GetComponent<Image>().color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
             scrollSnap.Add(panelPrefab, index);
