@@ -11,6 +11,9 @@ using System.IO;
 public class ScrollListManagerColoring : MonoBehaviour
 {
     public string saveIndexString = "ColoringList";
+    public GameObject drawItem;
+    public GameObject drawPanel;
+    public Transform drawParent;
 
     [Space]
     public bool horizontalList;
@@ -40,7 +43,8 @@ public class ScrollListManagerColoring : MonoBehaviour
     private int texWidth = 512;
     private int texHeight = 512;
 
-    private static Dictionary<string, Sprite> allTexturesDic;
+
+    public static Dictionary<string, Sprite> allTexturesDic;
 
     private void Awake()
     {
@@ -163,7 +167,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         // }
 
         // SetNewPos(firstPos);
-
+        CreateNewPanel();
         LoadAllTexture();
     }
 
@@ -184,7 +188,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         lerping = true;
     }
 
-    private void LoadAllTexture()
+    public void LoadAllTexture()
     {
 
         for (int j = 0; j < transform.childCount; j++){
@@ -617,4 +621,31 @@ public class ScrollListManagerColoring : MonoBehaviour
         ColoringBookManager.ID = saveIndexString + index.ToString();
         SceneManager.LoadScene("PaintScene");
     }
+
+    public void drawItemInstante() {
+        int allItemNum = allTexturesDic.Count;
+        for (int i = 0; i < allItemNum%10; i++) {
+            GameObject panel = Instantiate(drawPanel) as GameObject;
+            panel.transform.parent = drawParent;
+        }
+    }
+
+    public void AddNewDrawItem() {
+        Transform parent = transform.GetChild(transform.childCount-1);
+        int childNum = parent.childCount;
+        Debug.Log(allTexturesDic.Count);
+        // change add button position.
+
+        
+    }
+
+    void CreateNewPanel() {
+        int allItemNum = allTexturesDic.Count;
+        // int panelNum = Mathf.Floor(allItemNum/10)  + 1;
+        // int remainItemNum = allItemNum - (panelNum-1)*10;
+        // for (int i = 0; i < panelNum; i++) {  
+
+        // }
+    }
+
 }

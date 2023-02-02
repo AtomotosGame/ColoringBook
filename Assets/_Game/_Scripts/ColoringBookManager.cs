@@ -211,8 +211,8 @@ public class ColoringBookManager : MonoBehaviour
         }
         else
         {
-            texWidth = 1024;
-            texHeight = 576;
+            texWidth = 512;
+            texHeight = 512;
 
             useLockArea = false;
         }
