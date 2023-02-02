@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
@@ -14,6 +15,12 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     private float currentScale = 1f, moveTime = 1f;
     private Vector3 startPosition, endPosition;
+    public Button testButton;
+
+
+    void Start() {
+        testButton.onClick.AddListener(() => ButtonClicked(42));
+    }
 
     private void Awake()
     {
@@ -70,5 +77,11 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         moveTime = MTime;
 
         StartCoroutine(TranslateToEndPos());
+    }
+
+    void ButtonClicked(int buttonNo)
+    {
+        //Output this to console when the Button3 is clicked
+        Debug.Log("Button clicked = " + buttonNo);
     }
 }
