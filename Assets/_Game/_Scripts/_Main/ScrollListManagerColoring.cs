@@ -10,11 +10,7 @@ using System.IO;
 
 public class ScrollListManagerColoring : MonoBehaviour
 {
-    public string saveIndexString = "ColoringList";
-    public GameObject drawItem;
-    public GameObject drawPanel;
-    public Transform drawParent;
-
+    public static string saveIndexString;
     [Space]
     public bool horizontalList;
 
@@ -43,11 +39,12 @@ public class ScrollListManagerColoring : MonoBehaviour
     private int texWidth = 512;
     private int texHeight = 512;
 
-
     public static Dictionary<string, Sprite> allTexturesDic;
 
     private void Awake()
     {
+
+
         if (allTexturesDic == null)
         {
             allTexturesDic = new Dictionary<string, Sprite>();
@@ -167,7 +164,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         // }
 
         // SetNewPos(firstPos);
-        CreateNewPanel();
+
         LoadAllTexture();
     }
 
@@ -603,49 +600,56 @@ public class ScrollListManagerColoring : MonoBehaviour
         // }
     }
 
-    public void LoadGame(int index)
+    public static void LoadGame(int index)
     {
         MusicController.USE.PlaySound(MusicController.USE.clickSound);
+        Debug.Log("saveIndexString " + saveIndexString);
         PlayerPrefs.SetInt(saveIndexString, index);
         PlayerPrefs.Save();
 
+        
+        if (PlayerPrefs.GetInt("allDrawItem") == null || index > PlayerPrefs.GetInt("allDrawItem") ) {
+            PlayerPrefs.SetInt("allDrawItem", index);
+        }
 
-        // if (transform.GetChild(index).childCount > 0)
-        // {
+
+        if (saveIndexString == "ColoringList" || index <= PlayerPrefs.GetInt("allDrawItem") )
+        {
             ColoringBookManager.maskTexIndex = index;
-        // }
-        // else
-        // {
-            // ColoringBookManager.maskTexIndex = -1;
-        // }
+        }
+        else
+        {
+            ColoringBookManager.maskTexIndex = -1;
+        }
+
+        // PlayerPrefs.SetInt(saveIndexString, 0);
+        // PlayerPrefs.SetInt("allDrawItem", 0);
+
         ColoringBookManager.ID = saveIndexString + index.ToString();
+        Debug.Log(ColoringBookManager.ID);
         SceneManager.LoadScene("PaintScene");
     }
 
-    public void drawItemInstante() {
-        int allItemNum = allTexturesDic.Count;
-        for (int i = 0; i < allItemNum%10; i++) {
-            GameObject panel = Instantiate(drawPanel) as GameObject;
-            panel.transform.parent = drawParent;
+    public void RenamePanel() {
+
+        for (int i = 0 ; i < transform.childCount; i++ ){
+            transform.GetChild(i).transform.gameObject.name = i.ToString();
         }
     }
+    
+    public void RemoveItems() {
+        int allItemNum = PlayerPrefs.GetInt("allDrawItem");
+        int panelNum =  (int) (Mathf.Floor(allItemNum/10)) + 1;
+        int remainItemNum = allItemNum - (panelNum-1)*10;
+        for (int i = 0; i < 10; i++) {
+            if (i <= remainItemNum) {
 
-    public void AddNewDrawItem() {
-        Transform parent = transform.GetChild(transform.childCount-1);
-        int childNum = parent.childCount;
-        Debug.Log(allTexturesDic.Count);
-        // change add button position.
-
-        
-    }
-
-    void CreateNewPanel() {
-        int allItemNum = allTexturesDic.Count;
-        // int panelNum = Mathf.Floor(allItemNum/10)  + 1;
-        // int remainItemNum = allItemNum - (panelNum-1)*10;
-        // for (int i = 0; i < panelNum; i++) {  
-
-        // }
+            } else if (i == remainItemNum+1) {
+                transform.GetChild(panelNum-1).GetChild(i).GetChild(0).GetComponent<Image>().enabled = true;
+            } else {
+                transform.GetChild(panelNum-1).GetChild(i).transform.gameObject.SetActive(false);
+            }
+        }
     }
 
 }
