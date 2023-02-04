@@ -53,10 +53,17 @@ public class MainManager : MonoBehaviour
     }
 
     public void OnDrawButtonClick() {
-        paintingMenu.menu.SetActive(!paintingMenu.menu.activeSelf);
-        paintingMenu.obj.SetActive(!paintingMenu.obj.activeSelf);
-        coloringMenu.obj.SetActive(!coloringMenu.obj.activeSelf);
-        returnBtn.SetActive(!returnBtn.activeSelf);
+        
+        if (PlayerPrefs.GetInt("allDrawItem") == 0 && PlayerPrefs.GetInt("firstDraw") != 1) {
+            PlayerPrefs.SetInt("firstDraw", 1);
+            ScrollListManagerColoring.saveIndexStringStatic = "PaintingList";
+            ScrollListManagerColoring.LoadGame(0);
+        } else {
+            paintingMenu.menu.SetActive(!paintingMenu.menu.activeSelf);
+            paintingMenu.obj.SetActive(!paintingMenu.obj.activeSelf);
+            coloringMenu.obj.SetActive(!coloringMenu.obj.activeSelf);
+            returnBtn.SetActive(!returnBtn.activeSelf);
+        }
     }
     public void OnColorButtonClick() {
         coloringMenu.menu.SetActive(!coloringMenu.menu.activeSelf);
