@@ -166,6 +166,10 @@ public class ScrollListManagerColoring : MonoBehaviour
 
         // SetNewPos(firstPos);
 
+        // if (PlayerPrefs.GetInt("allDrawItem") == 0) {
+        //     LoadGame(0);
+        // }
+
         LoadAllTexture();
     }
 
@@ -640,8 +644,13 @@ public class ScrollListManagerColoring : MonoBehaviour
     
     public void RemoveItems() {
         int allItemNum = PlayerPrefs.GetInt("allDrawItem");
+        // PlayerPrefs.SetInt("allDrawItem", 0);
+        // PlayerPrefs.SetInt("PaintingList", 0);
+        // PlayerPrefs.SetInt("ColoringList", 0);
+        // PlayerPrefs.SetInt("firstDraw", 0);
         int panelNum =  (int) (Mathf.Floor((allItemNum+1)/10)) + 1;
         int remainItemNum = allItemNum - (panelNum-1)*10;
+   
         for (int i = 0; i < 10; i++) {
             if (i <= remainItemNum) {
 
