@@ -15,7 +15,7 @@ public class ScrollListManagerColoring : MonoBehaviour
 {
     public string saveIndexString;
     public static string saveIndexStringStatic;
-    public static int selectedcolorItem;
+    public static int selectedcolorItem = 0;
 
     public ColoringItem [] coloringItems;
 
@@ -26,8 +26,6 @@ public class ScrollListManagerColoring : MonoBehaviour
         public string directoryName;
         public string fileName;
     }
-
-
 
     [Space]
     public bool horizontalList;
@@ -392,7 +390,22 @@ public class ScrollListManagerColoring : MonoBehaviour
                 }
                 else {
                     byte[] fileContents = task.Result;
-                    Debug.Log("1Finished downloading!");
+                    
+                    Debug.Log(fileContents.Length);
+                    // Texture2D tex = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
+                    // tex.filterMode = FilterMode.Point;
+                    // tex.wrapMode = TextureWrapMode.Clamp;
+                    // tex.LoadRawTextureData(fileContents);
+                    // tex.Apply(false);
+                    Texture2D texture = new Texture2D(1, 1);
+                    texture.LoadImage(fileContents);
+
+                    Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 100);
+
+                    int panelNum =  (int) (Mathf.Floor((i)/10));
+                    
+                    int itemNum = i - panelNum*10;
+                    transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).GetComponent<Image>().sprite = sp;
                 }
             });
         }
