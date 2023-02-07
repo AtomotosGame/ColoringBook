@@ -302,6 +302,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         }
     }
     
+    // Draw panel remove item
     public void RemoveItems() {
         int allItemNum = PlayerPrefs.GetInt("allDrawItem");
         // PlayerPrefs.SetInt("allDrawItem", 0);
@@ -316,6 +317,22 @@ public class ScrollListManagerColoring : MonoBehaviour
 
             } else if (i == remainItemNum+1) {
                 transform.GetChild(panelNum-1).GetChild(i).GetChild(0).GetComponent<Image>().enabled = true;
+            } else {
+                transform.GetChild(panelNum-1).GetChild(i).transform.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    // color panel remote item
+    public void ColoringRemoveItems() {
+        int allItemNum = coloringItems[selectedcolorItem].fileNumber;
+        int panelNum =  (int) (Mathf.Floor((allItemNum)/10)) + 1;
+        int remainItemNum = allItemNum - (panelNum-1)*10;
+        if (remainItemNum == 0) panelNum--;
+   
+        for (int i = 0; i < 10; i++) {
+            if (i < remainItemNum) {
+
             } else {
                 transform.GetChild(panelNum-1).GetChild(i).transform.gameObject.SetActive(false);
             }
