@@ -28,10 +28,10 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         }
 
         void Start() {
-            
-            createPanels();
-            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllTexture();
-            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RemoveItems();
+            if (saveIndexString == "allDrawItem")
+                createPanels();
+            else 
+                createColoringPanels();
         }
 
         public void createPanels() {
@@ -44,6 +44,23 @@ namespace DanielLochner.Assets.SimpleScrollSnap
                 AddAtIndex();
             }
             ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RenamePanel();
+            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllTexture();
+            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RemoveItems();
+        }
+    
+        public void createColoringPanels() {
+            int selectedNum = ScrollListManagerColoring.selectedcolorItem;
+            int allItemNum = ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().coloringItems[selectedNum].fileNumber;
+            int panelNum =  (int) (Mathf.Floor((allItemNum+1)/10)) + 1;
+
+            if (allItemNum == 0) panelNum = 1;
+
+            for (int i = 0; i < panelNum; i++) {  
+                AddAtIndex();
+            }
+            // ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RenamePanel();
+            // ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllTexture();
+            // ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RemoveItems();
         }
 
         public void Add(int index)
