@@ -15,7 +15,7 @@ public class ScrollListManagerColoring : MonoBehaviour
 {
     public string saveIndexString;
     public static string saveIndexStringStatic;
-    public static int selectedcolorItem;
+    public static int selectedcolorItem = 0;
 
     public ColoringItem [] coloringItems;
 
