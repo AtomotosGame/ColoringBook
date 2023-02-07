@@ -50,7 +50,6 @@ namespace DanielLochner.Assets.SimpleScrollSnap
     
         public void createColoringPanels() {
 
-            Debug.Log("createdColor");
             int selectedNum = ScrollListManagerColoring.selectedcolorItem;
             int allItemNum = ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().coloringItems[selectedNum].fileNumber;
             int panelNum =  (int) (Mathf.Floor((allItemNum)/10)) + 1;
@@ -61,8 +60,9 @@ namespace DanielLochner.Assets.SimpleScrollSnap
                 AddAtIndex();
             }
             ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RenamePanel();
-            // ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllTexture();
+            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllTexture();
             ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().ColoringRemoveItems();
+            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().GetFirebaseData();
         }
 
         public void Add(int index)

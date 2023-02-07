@@ -78,8 +78,8 @@ public class ScrollListManagerColoring : MonoBehaviour
         foreach (Transform t in transform)
             listOfCharacters.Add(t.gameObject);
 
-        GetFirebaseData();
-        LoadAllTexture();
+        // GetFirebaseData();
+        // LoadAllTexture();
     }
 
     private void SetNewPos(int num)
@@ -383,59 +383,41 @@ public class ScrollListManagerColoring : MonoBehaviour
             StorageReference reference = storage.GetReferenceFromUrl(path);
 
             const long maxAllowedSize = 1 * 1024 * 1024;
-            reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
-                if (task.IsFaulted || task.IsCanceled) {
-                    Debug.LogException(task.Exception);
-                    // Uh-oh, an error occurred!
-                }
-                else {
-                    byte[] fileContents = task.Result;
-                    
-                    Debug.Log(fileContents.Length);
-                    // Texture2D tex = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
-                    // tex.filterMode = FilterMode.Point;
-                    // tex.wrapMode = TextureWrapMode.Clamp;
-                    // tex.LoadRawTextureData(fileContents);
-                    // tex.Apply(false);
-                    Texture2D texture = new Texture2D(1, 1);
-                    texture.LoadImage(fileContents);
-
-                    Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 100);
-
-                    int panelNum =  (int) (Mathf.Floor((i)/10));
-                    
-                    int itemNum = i - panelNum*10;
-                    transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).GetComponent<Image>().sprite = sp;
-                }
-            });
+            getFirebaseStoreImage(reference, maxAllowedSize, i);
+            
         }
+        Debug.Log("3");
+    }
+
+    public void getFirebaseStoreImage(StorageReference reference, long maxAllowedSize, int i) {
         
+        reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
+            if (task.IsFaulted || task.IsCanceled) {
+                Debug.LogException(task.Exception);
+                // Uh-oh, an error occurred!
+            }
+            else {
+                byte[] fileContents = task.Result;
+                
+                Debug.Log(fileContents.Length);
+                // Texture2D tex = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
+                // tex.filterMode = FilterMode.Point;
+                // tex.wrapMode = TextureWrapMode.Clamp;
+                // tex.LoadRawTextureData(fileContents);
+                // tex.Apply(false);
+                Texture2D texture = new Texture2D(texWidth, texHeight);
+                texture.LoadImage(fileContents);
 
-        
+                Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 100);
 
-
-
-     
-        // storage_ref.Child("Aliens1.png").GetBytesAsync(1024 * 1024)
-        //     .ContinueWith((System.Threading.Tasks.Task<byte[]> task) =>
-        //         {
-        //             Debug.Log("2");
-        //             if (task.IsFaulted || task.IsCanceled)
-        //             {
-        //                 Debug.Log(task.Exception.ToString());
-        //             }
-        //             else
-        //             {
-        //             byte[] fileContents = task.Result;
-        //             Debug.Log("Load Image after getting result!");
-
-        //             // Texture2D texture = new Texture2D(1024, 1024);
-        //             // texture.LoadImage(fileContents);
-        //             // testMaterial.SetTexture("_MainTex", texture);
-        //             // plane.GetComponent<Renderer>().sharedMaterial = testMaterial;
-        //             Debug.Log("finished");
-        //             }
-        //         });
-            Debug.Log("3");
+                int panelNum =  (int) (Mathf.Floor((i)/10));
+                
+                int itemNum = i - panelNum*10;
+                Debug.Log(panelNum);
+                Debug.Log(itemNum);
+                Debug.Log(transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).transform.name);
+                transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).GetComponent<Image>().sprite = sp;
+            }
+        });
     }
 }
