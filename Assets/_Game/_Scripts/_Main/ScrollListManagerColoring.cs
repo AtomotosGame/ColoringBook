@@ -104,7 +104,6 @@ public class ScrollListManagerColoring : MonoBehaviour
 
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
-                Debug.Log("i : " + i + "j :: " + j);
                 if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
                     transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID);
             }
@@ -116,7 +115,6 @@ public class ScrollListManagerColoring : MonoBehaviour
 
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
-                Debug.Log("i : " + i + "j :: " + j);
                 if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
                     transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID);
             }
