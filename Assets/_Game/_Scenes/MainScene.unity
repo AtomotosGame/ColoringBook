@@ -6185,7 +6185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d450983097bdf4a8ab138d02b5743b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelPrefab: {fileID: 1281329443266664999, guid: 86a3b41f1f6ec614f8a1b4982c0f3076,
+  panelPrefab: {fileID: 1281329443266664999, guid: 4e7596ca44c621241812bf1d736b3184,
     type: 3}
   togglePrefab: {fileID: 1342908715781195965, guid: 3db685d3cd856954aa07c4ce383481cf,
     type: 3}

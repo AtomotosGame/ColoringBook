@@ -60,7 +60,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             }
             // ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RenamePanel();
             // ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllTexture();
-            // ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RemoveItems();
+            // ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().ColoringRemoveItems();
         }
 
         public void Add(int index)
