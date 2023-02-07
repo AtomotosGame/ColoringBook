@@ -35,7 +35,6 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         }
 
         public void createPanels() {
-            Debug.Log("allDrawItem : " +  PlayerPrefs.GetInt("allDrawItem") );
             int allItemNum = PlayerPrefs.GetInt(saveIndexString);
             int panelNum =  (int) (Mathf.Floor((allItemNum+1)/10)) + 1;
 

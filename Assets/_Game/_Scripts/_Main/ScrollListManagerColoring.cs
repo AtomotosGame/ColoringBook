@@ -15,6 +15,20 @@ public class ScrollListManagerColoring : MonoBehaviour
 {
     public string saveIndexString;
     public static string saveIndexStringStatic;
+    public static int selectedcolorItem;
+
+    public ColoringItem [] coloringItems;
+
+    [System.Serializable]
+    public class ColoringItem
+    {
+        public int fileNumber;
+        public string directoryName;
+        public string fileName;
+    }
+
+
+
     [Space]
     public bool horizontalList;
 
@@ -66,6 +80,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         foreach (Transform t in transform)
             listOfCharacters.Add(t.gameObject);
 
+        GetFirebaseData();
         LoadAllTexture();
     }
 
@@ -308,24 +323,6 @@ public class ScrollListManagerColoring : MonoBehaviour
     }
 
     public void GetFirebaseData () {
-        // Get a reference to the storage service, using the default Firebase App
-        // FirebaseStorage storage = FirebaseStorage.DefaultInstance;
-        // Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
-        //     var dependencyStatus = task.Result;
-        //     if (dependencyStatus == Firebase.DependencyStatus.Available) {
-        //         // Create and hold a reference to your FirebaseApp,
-        //         // where app is a Firebase.FirebaseApp property of your application class.
-        //         Debug.Log(Firebase.FirebaseApp.DefaultInstance);
-        //         // app = Firebase.FirebaseApp.DefaultInstance;
-
-        //         // Set a flag here to indicate whether Firebase is ready to use by your app.
-        //     } else {
-        //         UnityEngine.Debug.LogError(System.String.Format(
-        //         "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
-        //         // Firebase Unity SDK is not safe to use here.
-        //     }
-        // });
-
 
         // Debug.Log("a");
         // Firebase.Storage.FirebaseStorage storage = Firebase.Storage.FirebaseStorage.DefaultInstance;
@@ -359,56 +356,36 @@ public class ScrollListManagerColoring : MonoBehaviour
 
         // FirebaseStorage storage = FirebaseStorage.DefaultInstance;
         //  var storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
+        selectedcolorItem = 0;
+
         FirebaseStorage storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
-        StorageReference reference = storage.GetReferenceFromUrl("gs://decent-tracer-842.appspot.com/aliens/Thumbs/Aliens1.png");
 
+        for (int i = 0 ; i < coloringItems[selectedcolorItem].fileNumber; i++ ){
+            string path = "gs://decent-tracer-842.appspot.com/" + coloringItems[selectedcolorItem].directoryName + "/Thumbs/" + coloringItems[selectedcolorItem].fileName + (i+1).ToString() + ".png";
 
-        // Get a reference to the storage service, using the default Firebase App
+            Debug.Log(path);
+
+            StorageReference reference = storage.GetReferenceFromUrl(path);
+
+            const long maxAllowedSize = 1 * 1024 * 1024;
+            reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
+                if (task.IsFaulted || task.IsCanceled) {
+                    Debug.LogException(task.Exception);
+                    // Uh-oh, an error occurred!
+                }
+                else {
+                    byte[] fileContents = task.Result;
+                    Debug.Log("1Finished downloading!");
+                }
+            });
+        }
         
 
-        // Create a storage reference from our storage service
-        // StorageReference storageRef = storage.GetReferenceFromUrl("gs://decent-tracer-842.appspot.com");
-        // Firebase.Storage.StorageReference storage_ref = storage.GetReferenceFromUrl("gs://paintingproject-55bea.appspot.com");
-        // Debug.Log(storage_ref);
-        // Firebase.Storage.StorageReference storage_refURL = Firebase.Storage.FirebaseStorage.DefaultInstance.GetReferenceFromUrl("gs://decent-tracer-842.appspot.com/aliens/Thumbs/Aliens1.png");
-        // Debug.Log(storage_refURL);
-
-        // Get a reference to the storage service, using the default Firebase App
-        // FirebaseStorage storage = FirebaseStorage.DefaultInstance;
-        // Debug.Log(storage);
-        // var storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
+        
 
 
-        reference.GetDownloadUrlAsync().ContinueWithOnMainThread(task => {
-            if (!task.IsFaulted && !task.IsCanceled) {
-                Debug.Log("Download URL: " + task.Result);
-                // ... now download the file via WWW or UnityWebRequest.
-            }
-        });
 
-        const long maxAllowedSize = 1 * 1024 * 1024;
-        // // storage_refURL.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
-        // //     if (task.IsFaulted || task.IsCanceled) {
-        // //         Debug.LogException(task.Exception);
-        // //         // Uh-oh, an error occurred!
-        // //     }
-        // //     else {
-        // //         byte[] fileContents = task.Result;
-        // //         Debug.Log("Finished downloading!");
-        // //     }
-        // // });
-
-
-        reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
-            if (task.IsFaulted || task.IsCanceled) {
-                Debug.LogException(task.Exception);
-                // Uh-oh, an error occurred!
-            }
-            else {
-                byte[] fileContents = task.Result;
-                Debug.Log("1Finished downloading!");
-            }
-        });
+     
         // storage_ref.Child("Aliens1.png").GetBytesAsync(1024 * 1024)
         //     .ContinueWith((System.Threading.Tasks.Task<byte[]> task) =>
         //         {

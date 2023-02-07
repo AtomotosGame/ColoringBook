@@ -160,7 +160,7 @@ PlayerSettings:
     Android: com.northpick.coloringbookl
     Standalone: com.northpick.coloringbookl
     Tizen: biz.labhand.happyvillage
-    iPhone: com.coloringbook.kids
+    iPhone: com.baby.coloring.book
     tvOS: biz.labhand.happyvillage
   buildNumber:
     Standalone: 0
@@ -232,7 +232,7 @@ PlayerSettings:
   iOSRenderExtraFrameOnPause: 1
   iosCopyPluginsCodeInsteadOfSymlink: 0
   appleDeveloperTeamID: 
-  iOSManualSigningProvisioningProfileID: 1613463321
+  iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
   iOSManualSigningProvisioningProfileType: 0
   tvOSManualSigningProvisioningProfileType: 0
