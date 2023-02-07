@@ -1,65 +1,34 @@
 {
   "project_info": {
-    "project_number": "538465562223",
-    "project_id": "paintingproject-55bea",
-    "storage_bucket": "paintingproject-55bea.appspot.com"
+    "project_number": "55450228232",
+    "firebase_url": "https://decent-tracer-842.firebaseio.com",
+    "project_id": "decent-tracer-842",
+    "storage_bucket": "decent-tracer-842.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:538465562223:android:35f39fa3c86b2b43e1679a",
+        "mobilesdk_app_id": "1:55450228232:ios:b72f1e269c5149f518a3bd",
         "android_client_info": {
-          "package_name": "com.company.appname"
+          "package_name": "com.coloringbook.kids"
         }
       },
       "oauth_client": [
         {
-          "client_id": "538465562223-63po0bbuke74gph0lfc96tfi3jgkff58.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "55450228232-u9em21tfp8uudfkhj1qunmeidnk74ck4.apps.googleusercontent.com"
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBwe_WM8Vl6wwWumjiKAD36l0VQ1G8S0aQ"
+          "current_key": "AIzaSyCFKbp8cpEfIUv1VdN6xxyyjUl8X-6kk-4"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 0
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "538465562223-63po0bbuke74gph0lfc96tfi3jgkff58.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:538465562223:android:50cda3e2ec7326ebe1679a",
-        "android_client_info": {
-          "package_name": "com.mypackage.com"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "538465562223-63po0bbuke74gph0lfc96tfi3jgkff58.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBwe_WM8Vl6wwWumjiKAD36l0VQ1G8S0aQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "538465562223-63po0bbuke74gph0lfc96tfi3jgkff58.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1
         }
       }
     }
