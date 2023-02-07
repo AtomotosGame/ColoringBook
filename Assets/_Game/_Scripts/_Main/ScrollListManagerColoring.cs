@@ -337,7 +337,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         }
     }
 
-    public void GetFirebaseData () {
+    public async void GetFirebaseData () {
 
         // Debug.Log("a");
         // Firebase.Storage.FirebaseStorage storage = Firebase.Storage.FirebaseStorage.DefaultInstance;
@@ -375,6 +375,7 @@ public class ScrollListManagerColoring : MonoBehaviour
 
         FirebaseStorage storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
 
+
         for (int i = 0 ; i < coloringItems[selectedcolorItem].fileNumber; i++ ){
             string path = "gs://decent-tracer-842.appspot.com/" + coloringItems[selectedcolorItem].directoryName + "/Thumbs/" + coloringItems[selectedcolorItem].fileName + (i+1).ToString() + ".png";
 
@@ -383,41 +384,33 @@ public class ScrollListManagerColoring : MonoBehaviour
             StorageReference reference = storage.GetReferenceFromUrl(path);
 
             const long maxAllowedSize = 1 * 1024 * 1024;
-            getFirebaseStoreImage(reference, maxAllowedSize, i);
             
+            reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
+                if (task.IsFaulted || task.IsCanceled) {
+                    Debug.LogException(task.Exception);
+                    // Uh-oh, an error occurred!
+                }
+                else {
+                    byte[] fileContents = task.Result;
+                    Debug.Log(fileContents.Length);
+                    // Texture2D tex = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
+                    // tex.filterMode = FilterMode.Point;
+                    // tex.wrapMode = TextureWrapMode.Clamp;
+                    // tex.LoadRawTextureData(fileContents);
+                    // tex.Apply(false);
+                    Texture2D texture = new Texture2D(texWidth, texHeight);
+                    texture.LoadImage(fileContents);
+
+                    Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 100);
+
+                    int panelNum =  (int) (Mathf.Floor((i)/10));
+                    
+                    int itemNum = i - panelNum*10;
+                    transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).GetComponent<Image>().sprite = sp;
+                }
+            });
         }
         Debug.Log("3");
     }
 
-    public void getFirebaseStoreImage(StorageReference reference, long maxAllowedSize, int i) {
-        
-        reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
-            if (task.IsFaulted || task.IsCanceled) {
-                Debug.LogException(task.Exception);
-                // Uh-oh, an error occurred!
-            }
-            else {
-                byte[] fileContents = task.Result;
-                
-                Debug.Log(fileContents.Length);
-                // Texture2D tex = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
-                // tex.filterMode = FilterMode.Point;
-                // tex.wrapMode = TextureWrapMode.Clamp;
-                // tex.LoadRawTextureData(fileContents);
-                // tex.Apply(false);
-                Texture2D texture = new Texture2D(texWidth, texHeight);
-                texture.LoadImage(fileContents);
-
-                Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 100);
-
-                int panelNum =  (int) (Mathf.Floor((i)/10));
-                
-                int itemNum = i - panelNum*10;
-                Debug.Log(panelNum);
-                Debug.Log(itemNum);
-                Debug.Log(transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).transform.name);
-                transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).GetComponent<Image>().sprite = sp;
-            }
-        });
-    }
 }
