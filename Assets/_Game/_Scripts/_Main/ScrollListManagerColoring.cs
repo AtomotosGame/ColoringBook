@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Firebase;
+  using Firebase.Extensions;
+  using Firebase.Storage;
 
 #if UNITY_WEBGL
 using System.IO;
@@ -680,29 +683,110 @@ public class ScrollListManagerColoring : MonoBehaviour
         //         // Firebase Unity SDK is not safe to use here.
         //     }
         // });
-        Debug.Log("a");
-        Firebase.Storage.StorageReference storageReference = Firebase.Storage.FirebaseStorage.DefaultInstance.GetReferenceFromUrl("gs://paintingproject-55bea.appspot.com");
-        Debug.Log("a");
-        storageReference.Child("/").GetBytesAsync(512*512).ContinueWith((System.Threading.Tasks.Task<byte[]> task) =>
-        {
-            Debug.Log("b");
-            if (task.IsFaulted || task.IsCanceled)
-            {
-                Debug.Log("c");
-                Debug.Log(task.Exception.ToString());
+
+
+        // Debug.Log("a");
+        // Firebase.Storage.FirebaseStorage storage = Firebase.Storage.FirebaseStorage.DefaultInstance;
+        // Firebase.Storage.StorageReference storageReference = storage.GetReferenceFromUrl("gs://paintingproject-55bea.appspot.com");
+        // Debug.Log("a");
+
+        // storageReference.Child("Aliens1.png").GetBytesAsync(1024 * 1024).ContinueWith((System.Threading.Tasks.Task<byte[]> task) =>
+        // {
+        //     Debug.Log("b");
+        //     if (task.IsFaulted || task.IsCanceled)
+        //     {
+        //         Debug.Log("c");
+        //         Debug.Log(task.Exception.ToString());
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("s");
+        //         byte[] fileContents = task.Result;
+        //         Texture2D texture = new Texture2D(1, 1);
+        //         texture.LoadImage(fileContents);
+        //         //if you need sprite for SpriteRenderer or Image
+        //         Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f,texture.width, 
+        //         texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        //         Debug.Log("Finished downloading!");
+        //     }
+        //     Debug.Log("e");
+        // });
+
+        // Debug.Log("g");
+
+
+        // FirebaseStorage storage = FirebaseStorage.DefaultInstance;
+        //  var storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
+        FirebaseStorage storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
+        StorageReference reference = storage.GetReferenceFromUrl("gs://decent-tracer-842.appspot.com/aliens/Thumbs/Aliens1.png");
+
+
+        // Get a reference to the storage service, using the default Firebase App
+        
+
+        // Create a storage reference from our storage service
+        // StorageReference storageRef = storage.GetReferenceFromUrl("gs://decent-tracer-842.appspot.com");
+        // Firebase.Storage.StorageReference storage_ref = storage.GetReferenceFromUrl("gs://paintingproject-55bea.appspot.com");
+        // Debug.Log(storage_ref);
+        // Firebase.Storage.StorageReference storage_refURL = Firebase.Storage.FirebaseStorage.DefaultInstance.GetReferenceFromUrl("gs://decent-tracer-842.appspot.com/aliens/Thumbs/Aliens1.png");
+        // Debug.Log(storage_refURL);
+
+        // Get a reference to the storage service, using the default Firebase App
+        // FirebaseStorage storage = FirebaseStorage.DefaultInstance;
+        // Debug.Log(storage);
+        // var storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
+
+
+        reference.GetDownloadUrlAsync().ContinueWithOnMainThread(task => {
+            if (!task.IsFaulted && !task.IsCanceled) {
+                Debug.Log("Download URL: " + task.Result);
+                // ... now download the file via WWW or UnityWebRequest.
             }
-            else
-            {
-                Debug.Log("s");
-                byte[] fileContents = task.Result;
-                Texture2D texture = new Texture2D(1, 1);
-                texture.LoadImage(fileContents);
-                //if you need sprite for SpriteRenderer or Image
-                Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f,texture.width, 
-                texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-                Debug.Log("Finished downloading!");
-            }
-            Debug.Log("e");
         });
+
+        const long maxAllowedSize = 1 * 1024 * 1024;
+        // // storage_refURL.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
+        // //     if (task.IsFaulted || task.IsCanceled) {
+        // //         Debug.LogException(task.Exception);
+        // //         // Uh-oh, an error occurred!
+        // //     }
+        // //     else {
+        // //         byte[] fileContents = task.Result;
+        // //         Debug.Log("Finished downloading!");
+        // //     }
+        // // });
+
+
+        reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
+            if (task.IsFaulted || task.IsCanceled) {
+                Debug.LogException(task.Exception);
+                // Uh-oh, an error occurred!
+            }
+            else {
+                byte[] fileContents = task.Result;
+                Debug.Log("1Finished downloading!");
+            }
+        });
+        // storage_ref.Child("Aliens1.png").GetBytesAsync(1024 * 1024)
+        //     .ContinueWith((System.Threading.Tasks.Task<byte[]> task) =>
+        //         {
+        //             Debug.Log("2");
+        //             if (task.IsFaulted || task.IsCanceled)
+        //             {
+        //                 Debug.Log(task.Exception.ToString());
+        //             }
+        //             else
+        //             {
+        //             byte[] fileContents = task.Result;
+        //             Debug.Log("Load Image after getting result!");
+
+        //             // Texture2D texture = new Texture2D(1024, 1024);
+        //             // texture.LoadImage(fileContents);
+        //             // testMaterial.SetTexture("_MainTex", texture);
+        //             // plane.GetComponent<Renderer>().sharedMaterial = testMaterial;
+        //             Debug.Log("finished");
+        //             }
+        //         });
+            Debug.Log("3");
     }
 }
