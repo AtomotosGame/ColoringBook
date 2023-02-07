@@ -385,7 +385,7 @@ public class ScrollListManagerColoring : MonoBehaviour
 
             const long maxAllowedSize = 1 * 1024 * 1024;
             
-            reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
+            await reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
                 if (task.IsFaulted || task.IsCanceled) {
                     Debug.LogException(task.Exception);
                     // Uh-oh, an error occurred!
