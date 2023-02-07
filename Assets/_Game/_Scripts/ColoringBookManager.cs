@@ -77,8 +77,8 @@ public class ColoringBookManager : MonoBehaviour
 
     private Texture2D tex; // texture that we paint into (it gets updated from pixels[] array when painted)
 
-    private int texWidth = 1024;
-    private int texHeight = 576;
+    private int texWidth = 2048;
+    private int texHeight = 2048;
     private RaycastHit hit;
     private bool wentOutside = false;
 
@@ -297,6 +297,8 @@ public class ColoringBookManager : MonoBehaviour
             System.Array.Copy(pixels, undoPixels[0], pixels.Length);
         }
 
+        System.Array.Copy(pixels, undoPixels[0], pixels.Length);
+
         // locking mask enabled
         if (useLockArea)
         {
@@ -503,7 +505,7 @@ public class ColoringBookManager : MonoBehaviour
                 undoPixels.RemoveRange(undoPixels.Count - RedoIndex, RedoIndex);
             }
 
-            undoPixels.Add(new byte[texWidth * texHeight * 9]);
+            undoPixels.Add(new byte[texWidth * texHeight * 4]);
             System.Array.Copy(pixels, undoPixels[undoPixels.Count - 1], pixels.Length);
 
             RedoIndex = 0;
@@ -1005,7 +1007,7 @@ public class ColoringBookManager : MonoBehaviour
                 RedoIndex = 0;
             }
 
-            undoPixels.Add(new byte[texWidth * texHeight * 9]);
+            undoPixels.Add(new byte[texWidth * texHeight * 4]);
             System.Array.Copy(pixels, undoPixels[undoPixels.Count - 1], pixels.Length);
         }
     }

@@ -54,8 +54,8 @@ public class ScrollListManagerColoring : MonoBehaviour
     private int currentCharacter;
     private int firstPos = 0;
 
-    private int texWidth = 512;
-    private int texHeight = 512;
+    private int texWidth = 2048;
+    private int texHeight = 2048;
 
     public static Dictionary<string, Sprite> allTexturesDic;
 
@@ -118,7 +118,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
                 if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
-                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID);
+                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID);
             }
         }
     }
@@ -131,7 +131,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         }
         else
         {
-            byte[] loadPixels = new byte[texWidth * texHeight * 9];
+            byte[] loadPixels = new byte[texWidth * texHeight * 4];
 
 #if UNITY_WEBGL
             string file = Application.persistentDataPath + "/Landscape" + key + ".sav";
@@ -305,7 +305,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         // PlayerPrefs.SetInt(saveIndexStringStatic, 0);
         // PlayerPrefs.SetInt("allDrawItem", 0);
 
-        ColoringBookManager.ID = saveIndexStringStatic + index.ToString();
+        // ColoringBookManager.ID = saveIndexStringStatic + index.ToString();
         Debug.Log(ColoringBookManager.ID);
         SceneManager.LoadScene("PaintScene");
     }
@@ -320,10 +320,10 @@ public class ScrollListManagerColoring : MonoBehaviour
     // Draw panel remove item
     public void RemoveItems() {
         int allItemNum = PlayerPrefs.GetInt("allDrawItem");
-        // PlayerPrefs.SetInt("allDrawItem", 0);
-        // PlayerPrefs.SetInt("PaintingList", 0);
-        // PlayerPrefs.SetInt("ColoringList", 0);
-        // PlayerPrefs.SetInt("firstDraw", 0);
+        PlayerPrefs.SetInt("allDrawItem", 0);
+        PlayerPrefs.SetInt("PaintingList", 0);
+        PlayerPrefs.SetInt("ColoringList", 0);
+        PlayerPrefs.SetInt("firstDraw", 0);
         int panelNum =  (int) (Mathf.Floor((allItemNum+1)/10)) + 1;
         int remainItemNum = allItemNum - (panelNum-1)*10;
    
