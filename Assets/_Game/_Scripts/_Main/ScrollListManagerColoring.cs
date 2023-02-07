@@ -376,7 +376,7 @@ public class ScrollListManagerColoring : MonoBehaviour
                     // tex.wrapMode = TextureWrapMode.Clamp;
                     // tex.LoadRawTextureData(fileContents);
                     // tex.Apply(false);
-                    Texture2D texture = new Texture2D(texWidth, texHeight);
+                    Texture2D texture = new Texture2D(512, 512);
                     texture.LoadImage(fileContents);
 
                     Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 100);
