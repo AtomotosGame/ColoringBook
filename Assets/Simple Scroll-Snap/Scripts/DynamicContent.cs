@@ -103,7 +103,10 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         }
         public void RemoveAtIndex()
         {
-            Remove(Convert.ToInt32("0"));
+            for (int i = ScrolllistColoringObj.childCount - 1; i >= 0; i--)
+            {
+                Remove(Convert.ToInt32("0"));
+            }
         }
         public void RemoveFromFront()
         {
