@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{c2a9bb0e-1fe6-c4c0-fb21-917d27ed2b81}</ProjectGuid>
+    <ProjectGuid>{d2bde617-e355-acff-266e-b86ab4cde07c}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
+    <AssemblyName>SimpleScrollSnap</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -36,108 +36,26 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenScale.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UIAnchor.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIScrollView.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIToggle.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UISavedOption.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIScrollBar.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UITextList.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UISoundVolume.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIPlayTween.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\SpringPosition.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\UIEventListener.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIDragObject.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIButtonRotation.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\ByteReader.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UIStretch.cs" />
-     <Compile Include="Assets\Plugins\ScreenshotManager.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenFOV.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UICenterOnClick.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIDragDropContainer.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\BetterList.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UILocalize.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\BMGlyph.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenPosition.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\LanguageSelection.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UITable.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenWidth.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UIPanel.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIImageButton.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIProgressBar.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIDragDropItem.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\PropertyReference.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenOrthoSize.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\ActiveAnimation.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\UIRect.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenAlpha.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIWrapContent.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\AnimationOrTween.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UISlider.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIButtonScale.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\UIBasicSprite.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UIAtlas.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIForwardEvents.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\EventDelegate.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\UIDrawCall.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIDraggableCamera.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIGrid.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\BMFont.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\SpringPanel.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UIOrthoCamera.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UI2DSpriteAnimation.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIButtonOffset.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIDragResize.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\PropertyBinding.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIEventTrigger.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIButton.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UISpriteData.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UICamera.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\UIWidget.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIDragScrollView.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\NGUIMath.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIPlayAnimation.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UISpriteAnimation.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UILabel.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\UISnapshotPoint.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenHeight.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIButtonMessage.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\NGUIText.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIKeyNavigation.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\Localization.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIDragCamera.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIPopupList.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UITexture.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UITooltip.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UIFont.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\AnimatedAlpha.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\BMSymbol.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIButtonColor.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UIRoot.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIDragDropRoot.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIToggledComponents.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenColor.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIWidgetContainer.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\RealTime.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenVolume.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\NGUITools.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UIInput.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UIViewport.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIButtonKeys.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIToggledObjects.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UI2DSprite.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIPlaySound.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\AnimatedColor.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenTransform.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UICenterOnChild.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\UITweener.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\UIGeometry.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIButtonActivate.cs" />
-     <Compile Include="Assets\Plugins\NGUI\UI\UISprite.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\UIKeyBinding.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Interaction\TypewriterEffect.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Internal\NGUIDebug.cs" />
-     <Compile Include="Assets\Plugins\NGUI\Tweening\TweenRotation.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\RecolourGreen.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Enums\SnapTarget.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\Scale.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\Fade.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\ScaleX.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\RecolourBlue.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\SimpleScrollSnap.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\ScaleZ.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\TranslateZ.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\TransitionEffectBase.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\Helper\NestedScrollRect.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Enums\MovementType.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Enums\SizeControl.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\RotateZ.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\ScaleY.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Enums\Direction.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\RotateY.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\RecolourRed.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Behaviours\TransitionEffect\Samples\RotateX.cs" />
+     <Compile Include="Assets\Simple Scroll-Snap\Scripts\Core\Runtime\Enums\MovementAxis.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -375,8 +293,35 @@
     <Reference Include="UnityEditor.UnityConnectModule">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Graphs">
+        <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+        <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+        <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+        <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+        <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.PackageManagerResolver">
+        <HintPath>E:\Work\Unity\ColoringBook\Assets\ExternalDependencyManager\Editor\1.2.175\Google.PackageManagerResolver.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+        <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil.Pdb">
         <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="log4netPlastic">
+        <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.IOSResolver">
+        <HintPath>E:\Work\Unity\ColoringBook\Assets\ExternalDependencyManager\Editor\1.2.175\Google.IOSResolver.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Storage">
         <HintPath>E:\Work\Unity\ColoringBook\Assets\Firebase\Plugins\Firebase.Storage.dll</HintPath>
@@ -387,11 +332,32 @@
     <Reference Include="Newtonsoft.Json">
         <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Firebase.Editor">
+        <HintPath>E:\Work\Unity\ColoringBook\Assets\Firebase\Editor\Firebase.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Plastic.Newtonsoft.Json">
+        <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Plastic.Antlr3.Runtime">
+        <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.YamlDotNet">
+        <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandlerImpl">
+        <HintPath>E:\Work\Unity\ColoringBook\Assets\ExternalDependencyManager\Editor\1.2.175\Google.VersionHandlerImpl.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Unsafe">
         <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
         <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+        <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+        <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.TaskExtension">
         <HintPath>E:\Work\Unity\ColoringBook\Assets\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
@@ -402,8 +368,14 @@
     <Reference Include="Google.MiniJson">
         <HintPath>E:\Work\Unity\ColoringBook\Assets\Firebase\Plugins\Google.MiniJson.dll</HintPath>
     </Reference>
+    <Reference Include="Google.VersionHandler">
+        <HintPath>E:\Work\Unity\ColoringBook\Assets\ExternalDependencyManager\Editor\Google.VersionHandler.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil.Rocks">
         <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.JarResolver">
+        <HintPath>E:\Work\Unity\ColoringBook\Assets\ExternalDependencyManager\Editor\1.2.175\Google.JarResolver.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
         <HintPath>E:\Work\Unity\ColoringBook\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
@@ -792,193 +764,21 @@
     <Reference Include="System.Xml.Serialization">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InternalAPIEngineBridge.001">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
-    </Reference>
-    <Reference Include="PsdPlugin">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Path.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.IK.Runtime">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Common.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Flow.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Psdimporter.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-    </Reference>
-    <Reference Include="Nobi.UiRoundedCorners.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Nobi.UiRoundedCorners.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Analytics">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Environments">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Runtime">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Common.Runtime">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Editor">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Runtime">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
-    </Reference>
-    <Reference Include="Nobi.UiRoundedCorners">
-        <HintPath>E:\Work\Unity\ColoringBook\Library\ScriptAssemblies\Nobi.UiRoundedCorners.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="NativeShare.Runtime.csproj">
-      <Project>{fec048a5-7875-ac0f-2eb1-67c26829cade}</Project>
-      <Name>NativeShare.Runtime</Name>
-    </ProjectReference>
     <ProjectReference Include="SimpleInspectorAttributes.csproj">
       <Project>{ec0e7b55-7527-543b-74be-2f9f4cfe01da}</Project>
       <Name>SimpleInspectorAttributes</Name>
     </ProjectReference>
-    <ProjectReference Include="SimpleScrollSnapEditor.csproj">
-      <Project>{b5a5153f-f802-fa70-8611-f30a8b5619d0}</Project>
-      <Name>SimpleScrollSnapEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="Utilities.csproj">
       <Project>{103d4112-ce79-ff12-2e22-d0dbf33872f4}</Project>
       <Name>Utilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="UtilitiesEditor.csproj">
-      <Project>{6cb223eb-50ba-491d-0b8e-60a59eeedbce}</Project>
-      <Name>UtilitiesEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="NativeGallery.Runtime.csproj">
-      <Project>{28658b13-b925-a305-68ae-7e56e46b4e83}</Project>
-      <Name>NativeGallery.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="CopyrightNoticeEditor.csproj">
-      <Project>{26900b4a-f45f-bf24-c96f-799b948971d7}</Project>
-      <Name>CopyrightNoticeEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="NativeShare.Editor.csproj">
-      <Project>{a6154100-8d19-f734-8f9f-ecebe1194dff}</Project>
-      <Name>NativeShare.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="SimpleInspectorAttributesEditor.csproj">
-      <Project>{1ef2a111-9408-a7c3-9127-cfa910c11aea}</Project>
-      <Name>SimpleInspectorAttributesEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="AndroidRuntimePermissions.Runtime.csproj">
-      <Project>{b68f50d1-58b5-00a5-fb8e-6b28b9d7c50e}</Project>
-      <Name>AndroidRuntimePermissions.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="NativeGallery.Editor.csproj">
-      <Project>{dbcb07a4-b35e-86fa-0bd5-a948b8b4e00b}</Project>
-      <Name>NativeGallery.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="SimpleScrollSnap.csproj">
-      <Project>{d2bde617-e355-acff-266e-b86ab4cde07c}</Project>
-      <Name>SimpleScrollSnap</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
