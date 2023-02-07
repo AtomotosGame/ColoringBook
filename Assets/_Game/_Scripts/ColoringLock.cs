@@ -26,9 +26,11 @@ public class ColoringLock : MonoBehaviour
         
     }
 
-    public void onClickItem() {
+    public void onClickItem(int index) {
+        ScrollListManagerColoring.selectedcolorItem = index;
         coloringSelectedMenu.SetActive(true);
         coloringMenu.SetActive(false);
+
     }
 
 }

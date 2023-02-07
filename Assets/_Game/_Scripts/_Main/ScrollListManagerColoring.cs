@@ -104,7 +104,21 @@ public class ScrollListManagerColoring : MonoBehaviour
 
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
-                transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID);
+                Debug.Log("i : " + i + "j :: " + j);
+                if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
+                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID);
+            }
+        }
+    }
+
+    public void LoadAllColorTexture()
+    {
+
+        for (int j = 0; j < transform.childCount; j++){
+            for (int i = 0; i < transform.GetChild(j).childCount; i++){
+                Debug.Log("i : " + i + "j :: " + j);
+                if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
+                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID);
             }
         }
     }
@@ -338,40 +352,6 @@ public class ScrollListManagerColoring : MonoBehaviour
     }
 
     public async void GetFirebaseData () {
-
-        // Debug.Log("a");
-        // Firebase.Storage.FirebaseStorage storage = Firebase.Storage.FirebaseStorage.DefaultInstance;
-        // Firebase.Storage.StorageReference storageReference = storage.GetReferenceFromUrl("gs://paintingproject-55bea.appspot.com");
-        // Debug.Log("a");
-
-        // storageReference.Child("Aliens1.png").GetBytesAsync(1024 * 1024).ContinueWith((System.Threading.Tasks.Task<byte[]> task) =>
-        // {
-        //     Debug.Log("b");
-        //     if (task.IsFaulted || task.IsCanceled)
-        //     {
-        //         Debug.Log("c");
-        //         Debug.Log(task.Exception.ToString());
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("s");
-        //         byte[] fileContents = task.Result;
-        //         Texture2D texture = new Texture2D(1, 1);
-        //         texture.LoadImage(fileContents);
-        //         //if you need sprite for SpriteRenderer or Image
-        //         Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f,texture.width, 
-        //         texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-        //         Debug.Log("Finished downloading!");
-        //     }
-        //     Debug.Log("e");
-        // });
-
-        // Debug.Log("g");
-
-
-        // FirebaseStorage storage = FirebaseStorage.DefaultInstance;
-        //  var storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
-        selectedcolorItem = 0;
 
         FirebaseStorage storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
 
