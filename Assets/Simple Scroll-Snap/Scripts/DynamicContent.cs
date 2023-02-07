@@ -36,6 +36,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
 
         public void createPanels() {
             int allItemNum = PlayerPrefs.GetInt(saveIndexString);
+            Debug.Log(allItemNum);
             int panelNum =  (int) (Mathf.Floor((allItemNum+1)/10)) + 1;
 
             if (allItemNum == 0) panelNum = 1;
@@ -43,9 +44,9 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             for (int i = 0; i < panelNum; i++) {  
                 AddAtIndex();
             }
+            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RemoveItems();
             ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RenamePanel();
             ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllTexture();
-            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RemoveItems();
         }
     
         public void createColoringPanels() {
@@ -60,7 +61,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
                 AddAtIndex();
             }
             ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().RenamePanel();
-            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllTexture();
+            ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().LoadAllColorTexture();
             ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().ColoringRemoveItems();
             ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().GetFirebaseData();
         }
