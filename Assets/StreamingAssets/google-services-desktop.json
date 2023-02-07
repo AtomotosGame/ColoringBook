@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:55450228232:ios:b72f1e269c5149f518a3bd",
+        "mobilesdk_app_id": "1:55450228232:ios:29aa8d942328c05218a3bd",
         "android_client_info": {
-          "package_name": "com.coloringbook.kids"
+          "package_name": "com.baby.coloring.book"
         }
       },
       "oauth_client": [
         {
-          "client_id": "55450228232-u9em21tfp8uudfkhj1qunmeidnk74ck4.apps.googleusercontent.com"
+          "client_id": "55450228232-epks6c7rqj65r5gjb8bjtjssaaohh66r.apps.googleusercontent.com"
         }
       ],
       "api_key": [
