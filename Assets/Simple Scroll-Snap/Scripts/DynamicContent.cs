@@ -54,8 +54,9 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             int selectedNum = ScrollListManagerColoring.selectedcolorItem;
             int allItemNum = ScrolllistColoringObj.GetComponent<ScrollListManagerColoring>().coloringItems[selectedNum].fileNumber;
             int panelNum =  (int) (Mathf.Floor((allItemNum)/10)) + 1;
-
-            if (allItemNum/10 == 0) panelNum--;
+            int remainItemNum = allItemNum - (panelNum-1)*10;
+            if (remainItemNum == 0) panelNum--;
+            // if (allItemNum/10 == 0) panelNum--;
 
             for (int i = 0; i < panelNum; i++) {  
                 AddAtIndex();

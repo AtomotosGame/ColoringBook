@@ -343,7 +343,10 @@ public class ScrollListManagerColoring : MonoBehaviour
         int allItemNum = coloringItems[selectedcolorItem].fileNumber;
         int panelNum =  (int) (Mathf.Floor((allItemNum)/10)) + 1;
         int remainItemNum = allItemNum - (panelNum-1)*10;
-        if (remainItemNum == 0) panelNum--;
+        if (remainItemNum == 0) { 
+            panelNum--;
+            remainItemNum = 10;
+        }
    
         for (int i = 0; i < 10; i++) {
             if (i < remainItemNum) {
