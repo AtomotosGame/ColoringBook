@@ -30,8 +30,8 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         void Start() {
             if (saveIndexString == "allDrawItem")
                 createPanels();
-            else 
-                createColoringPanels();
+            // else 
+            //     createColoringPanels();
         }
 
         public void createPanels() {
