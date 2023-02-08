@@ -1,19 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{c2a9bb0e-1fe6-c4c0-fb21-917d27ed2b81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleScrollSnap", "SimpleScrollSnap.csproj", "{d2bde617-e355-acff-266e-b86ab4cde07c}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{b314d634-03fc-44f3-aa79-2b264ca6fa5c}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidRuntimePermissions.Runtime", "AndroidRuntimePermissions.Runtime.csproj", "{b68f50d1-58b5-00a5-fb8e-6b28b9d7c50e}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{c2a9bb0e-1fe6-c4c0-fb21-917d27ed2b81}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleMobileAds", "GoogleMobileAds.csproj", "{146927f4-5179-450b-ae69-4e3dbff045e0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeShare.Runtime", "NativeShare.Runtime.csproj", "{fec048a5-7875-ac0f-2eb1-67c26829cade}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeGallery.Runtime", "NativeGallery.Runtime.csproj", "{28658b13-b925-a305-68ae-7e56e46b4e83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeShare.Runtime", "NativeShare.Runtime.csproj", "{fec048a5-7875-ac0f-2eb1-67c26829cade}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInspectorAttributes", "SimpleInspectorAttributes.csproj", "{ec0e7b55-7527-543b-74be-2f9f4cfe01da}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleMobileAds.Editor", "GoogleMobileAds.Editor.csproj", "{d03b9d26-a37d-3544-77a3-7862ec7b806b}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities.csproj", "{103d4112-ce79-ff12-2e22-d0dbf33872f4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleScrollSnapEditor", "SimpleScrollSnapEditor.csproj", "{b5a5153f-f802-fa70-8611-f30a8b5619d0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{90bcb3f8-0e97-e20e-dac3-00d47411b95e}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyrightNoticeEditor", "CopyrightNoticeEditor.csproj", "{26900b4a-f45f-bf24-c96f-799b948971d7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesEditor", "UtilitiesEditor.csproj", "{6cb223eb-50ba-491d-0b8e-60a59eeedbce}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInspectorAttributesEditor", "SimpleInspectorAttributesEditor.csproj", "{1ef2a111-9408-a7c3-9127-cfa910c11aea}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeGallery.Editor", "NativeGallery.Editor.csproj", "{dbcb07a4-b35e-86fa-0bd5-a948b8b4e00b}"
 EndProject
@@ -24,20 +36,32 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{c2a9bb0e-1fe6-c4c0-fb21-917d27ed2b81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{c2a9bb0e-1fe6-c4c0-fb21-917d27ed2b81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{d2bde617-e355-acff-266e-b86ab4cde07c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{d2bde617-e355-acff-266e-b86ab4cde07c}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{b314d634-03fc-44f3-aa79-2b264ca6fa5c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{b314d634-03fc-44f3-aa79-2b264ca6fa5c}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{b68f50d1-58b5-00a5-fb8e-6b28b9d7c50e}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{b68f50d1-58b5-00a5-fb8e-6b28b9d7c50e}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{c2a9bb0e-1fe6-c4c0-fb21-917d27ed2b81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{c2a9bb0e-1fe6-c4c0-fb21-917d27ed2b81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{146927f4-5179-450b-ae69-4e3dbff045e0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{146927f4-5179-450b-ae69-4e3dbff045e0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28658b13-b925-a305-68ae-7e56e46b4e83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28658b13-b925-a305-68ae-7e56e46b4e83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{fec048a5-7875-ac0f-2eb1-67c26829cade}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{fec048a5-7875-ac0f-2eb1-67c26829cade}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{d03b9d26-a37d-3544-77a3-7862ec7b806b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{d03b9d26-a37d-3544-77a3-7862ec7b806b}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28658b13-b925-a305-68ae-7e56e46b4e83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28658b13-b925-a305-68ae-7e56e46b4e83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ec0e7b55-7527-543b-74be-2f9f4cfe01da}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ec0e7b55-7527-543b-74be-2f9f4cfe01da}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{103d4112-ce79-ff12-2e22-d0dbf33872f4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{103d4112-ce79-ff12-2e22-d0dbf33872f4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{b5a5153f-f802-fa70-8611-f30a8b5619d0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{b5a5153f-f802-fa70-8611-f30a8b5619d0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90bcb3f8-0e97-e20e-dac3-00d47411b95e}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90bcb3f8-0e97-e20e-dac3-00d47411b95e}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26900b4a-f45f-bf24-c96f-799b948971d7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26900b4a-f45f-bf24-c96f-799b948971d7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6cb223eb-50ba-491d-0b8e-60a59eeedbce}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6cb223eb-50ba-491d-0b8e-60a59eeedbce}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ef2a111-9408-a7c3-9127-cfa910c11aea}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ef2a111-9408-a7c3-9127-cfa910c11aea}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{dbcb07a4-b35e-86fa-0bd5-a948b8b4e00b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{dbcb07a4-b35e-86fa-0bd5-a948b8b4e00b}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{a6154100-8d19-f734-8f9f-ecebe1194dff}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

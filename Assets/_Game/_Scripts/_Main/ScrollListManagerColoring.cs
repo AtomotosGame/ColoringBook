@@ -16,6 +16,8 @@ public class ScrollListManagerColoring : MonoBehaviour
     public string saveIndexString;
     public static string saveIndexStringStatic;
     public static int selectedcolorItem = 0;
+    public static string selectedDirectoryName;
+    public static string selectedFileName;
 
     public ColoringItem [] coloringItems;
 
@@ -291,10 +293,13 @@ public class ScrollListManagerColoring : MonoBehaviour
         if (saveIndexStringStatic == "ColoringList")
         {
             ColoringBookManager.maskTexIndex = index;
+            ColoringBookManager.maskPath = "gs://decent-tracer-842.appspot.com/" + selectedDirectoryName + "/Big Images/" + selectedFileName + (index+1).ToString() + ".png";
+            ColoringBookManager.ID = saveIndexStringStatic + selectedDirectoryName + index.ToString();
         }
         else
         {
             ColoringBookManager.maskTexIndex = -1;
+            ColoringBookManager.ID = saveIndexStringStatic + index.ToString();
         }
 
         // PlayerPrefs.SetInt(saveIndexStringStatic, 0);
@@ -353,7 +358,8 @@ public class ScrollListManagerColoring : MonoBehaviour
 
         FirebaseStorage storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
 
-
+        selectedDirectoryName = coloringItems[selectedcolorItem].directoryName;
+        selectedFileName = coloringItems[selectedcolorItem].fileName;
         for (int i = 0 ; i < coloringItems[selectedcolorItem].fileNumber; i++ ){
             string path = "gs://decent-tracer-842.appspot.com/" + coloringItems[selectedcolorItem].directoryName + "/Thumbs/" + coloringItems[selectedcolorItem].fileName + (i+1).ToString() + ".png";
 

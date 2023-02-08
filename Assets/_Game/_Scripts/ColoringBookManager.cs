@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
+using Firebase;
+using Firebase.Extensions;
+using Firebase.Storage;
 
 #if UNITY_WEBGL
 using System.IO;
@@ -16,6 +19,7 @@ public class ColoringBookManager : MonoBehaviour
     private Texture2D maskTex;
     public List<Sprite> maskTexList;
     public static int maskTexIndex = -1;
+    public static string maskPath = "";
     public static string ID = "0";
 
     // list of drawmodes
@@ -165,13 +169,45 @@ public class ColoringBookManager : MonoBehaviour
         if (maskTexIndex < 0)
         {
             maskTex = null;
+            InitializeEverything();
         }
         else
         {
-            maskTex = DuplicateTexture(maskTexList[maskTexIndex].texture);
+            // maskTex = DuplicateTexture(maskTexList[maskTexIndex].texture);
+            GetFirebaseData();
         }
+        // InitializeEverything();
+    }
 
-        InitializeEverything();
+    public async void GetFirebaseData () {
+
+        FirebaseStorage storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
+
+        Debug.Log(maskPath);
+        StorageReference reference = storage.GetReferenceFromUrl(maskPath);
+
+        const long maxAllowedSize = 1 * 2048 * 2048;
+        
+        await reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
+            if (task.IsFaulted || task.IsCanceled) {
+                Debug.LogException(task.Exception);
+                // Uh-oh, an error occurred!
+            }
+            else {
+                byte[] fileContents = task.Result;
+                Debug.Log(fileContents.Length);
+                // Texture2D tex = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
+                // tex.filterMode = FilterMode.Point;
+                // tex.wrapMode = TextureWrapMode.Clamp;
+                // tex.LoadRawTextureData(fileContents);
+                // tex.Apply(false);
+                Texture2D texture = new Texture2D(2048, 2048);
+                texture.LoadImage(fileContents);
+
+                maskTex = DuplicateTexture(texture);
+                InitializeEverything();
+            }
+        });
     }
 
     private Texture2D DuplicateTexture(Texture2D source)
@@ -211,8 +247,8 @@ public class ColoringBookManager : MonoBehaviour
         }
         else
         {
-            texWidth = 512;
-            texHeight = 512;
+            texWidth = 2048;
+            texHeight = 2048;
 
             useLockArea = false;
         }
@@ -241,14 +277,17 @@ public class ColoringBookManager : MonoBehaviour
 
         // undo system
         undoPixels = new List<byte[]>();
-        undoPixels.Add(new byte[texWidth * texHeight * 9]);
+        undoPixels.Add(new byte[texWidth * texHeight * 4]);
         RedoIndex = 0;
-
+        Debug.Log("texWidth " + texWidth);
+        Debug.Log("texHeight " + texHeight);
         byte[] loadPixels = new byte[texWidth * texHeight * 4];
         loadPixels = LoadImage(ID);
         if (loadPixels != null)
         {
             pixels = loadPixels;
+            Debug.Log(loadPixels.Length);
+            Debug.Log(undoPixels[0].Length);
             System.Array.Copy(pixels, undoPixels[0], pixels.Length);
             tex.LoadRawTextureData(pixels);
             tex.Apply(false);
