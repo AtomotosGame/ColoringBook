@@ -201,7 +201,7 @@ public class ColoringBookManager : MonoBehaviour
                 // tex.wrapMode = TextureWrapMode.Clamp;
                 // tex.LoadRawTextureData(fileContents);
                 // tex.Apply(false);
-                Texture2D texture = new Texture2D(2048, 2048);
+                Texture2D texture = new Texture2D(1024, 1024);
                 texture.LoadImage(fileContents);
 
                 maskTex = DuplicateTexture(texture);
