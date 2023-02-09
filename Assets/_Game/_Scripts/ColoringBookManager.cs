@@ -291,6 +291,7 @@ public class ColoringBookManager : MonoBehaviour
             System.Array.Copy(pixels, undoPixels[0], pixels.Length);
             tex.LoadRawTextureData(pixels);
             tex.Apply(false);
+            // System.Array.Copy(pixels, undoPixels[0], pixels.Length);
         }
         else
         {
