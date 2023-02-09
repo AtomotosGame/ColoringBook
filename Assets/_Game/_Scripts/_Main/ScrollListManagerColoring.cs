@@ -54,8 +54,8 @@ public class ScrollListManagerColoring : MonoBehaviour
     private int currentCharacter;
     private int firstPos = 0;
 
-    private int texWidth = 2048;
-    private int texHeight = 2048;
+    private int texWidth = 1024;
+    private int texHeight = 1024;
 
     public static Dictionary<string, Sprite> allTexturesDic;
 
