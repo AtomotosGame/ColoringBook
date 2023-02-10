@@ -54,8 +54,8 @@ public class ScrollListManagerColoring : MonoBehaviour
     private int currentCharacter;
     private int firstPos = 0;
 
-    private int texWidth = 1024;
-    private int texHeight = 1024;
+    private int texWidth = 2048;
+    private int texHeight = 2048;
 
     public static Dictionary<string, Sprite> allTexturesDic;
 
@@ -107,7 +107,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
                 if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
-                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID);
+                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID , 1024, 1024);
             }
         }
     }
@@ -118,13 +118,15 @@ public class ScrollListManagerColoring : MonoBehaviour
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
                 if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
-                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID);
+                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 2048, 2048);
             }
         }
     }
 
-    private Sprite LoadImage(string key, bool update = false)
+    private Sprite LoadImage(string key, bool update = false, int width = 1024, int height = 1024)
     {
+        texWidth = width;
+        texHeight = height;
         if (allTexturesDic.ContainsKey(key) && !update)
         {
             return allTexturesDic[key];

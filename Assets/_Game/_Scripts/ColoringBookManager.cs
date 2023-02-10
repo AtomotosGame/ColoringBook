@@ -77,8 +77,8 @@ public class ColoringBookManager : MonoBehaviour
 
     private Texture2D tex; // texture that we paint into (it gets updated from pixels[] array when painted)
 
-    private int texWidth = 1024;
-    private int texHeight = 1024;
+    private int texWidth = 2048;
+    private int texHeight = 2048;
     private RaycastHit hit;
     private bool wentOutside = false;
 
