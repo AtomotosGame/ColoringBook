@@ -362,19 +362,6 @@ public class ScrollListManagerColoring : MonoBehaviour
     public async void GetFirebaseData () {
 
         FirebaseStorage storage = FirebaseStorage.GetInstance("gs://decent-tracer-842.appspot.com");
-        // FirebaseStorage storage = FirebaseStorage.DefaultInstance;
-
-        // StorageReference spaceRefFull = storage.GetReferenceFromUrl("gs://decent-tracer-842.appspot.com/animals/Thumbs/Animals1.png");
-
-        // // Fetch the download URL
-        // spaceRefFull.GetDownloadUrlAsync().ContinueWithOnMainThread(task => {
-        //     if (!task.IsFaulted && !task.IsCanceled) {
-        //         Debug.Log("Download URL: " + task.Result);
-        //         // ... now download the file via WWW or UnityWebRequest.
-        //     } else {
-        //         Debug.LogException(task.Exception);
-        //     }
-        // });
 
         selectedDirectoryName = coloringItems[selectedcolorItem].directoryName;
         selectedFileName = coloringItems[selectedcolorItem].fileName;
