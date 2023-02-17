@@ -77,8 +77,8 @@ public class ColoringBookManager : MonoBehaviour
 
     private Texture2D tex; // texture that we paint into (it gets updated from pixels[] array when painted)
 
-    private int texWidth = 2048;
-    private int texHeight = 2048;
+    private int texWidth = 1024;
+    private int texHeight = 1024;
     private RaycastHit hit;
     private bool wentOutside = false;
 
@@ -174,9 +174,10 @@ public class ColoringBookManager : MonoBehaviour
         else
         {
             // maskTex = DuplicateTexture(maskTexList[maskTexIndex].texture);
-            GetFirebaseData();
+            maskTex = DuplicateTexture(ScrollListManagerColoring.allTexturesDic[maskPath].texture);
+            // GetFirebaseData();
         }
-        // InitializeEverything();
+        InitializeEverything();
     }
 
     public async void GetFirebaseData () {
@@ -186,7 +187,7 @@ public class ColoringBookManager : MonoBehaviour
         Debug.Log(maskPath);
         StorageReference reference = storage.GetReferenceFromUrl(maskPath);
 
-        const long maxAllowedSize = 2 * 2048 * 2048;
+        const long maxAllowedSize = 1024 * 1024;
         
         await reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
             if (task.IsFaulted || task.IsCanceled) {
