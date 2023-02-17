@@ -44,3 +44,48 @@ perf – performance improvements
 ci – continuous integration related
 build – changes that affect the build system or external dependencies
 revert – reverts a previous commit
+
+
+FeedBack
+
+Look a lot of functionality that comes with the templates are not functioning
+
+1) The images takes too long to load and also it should be cache so that they are not reloading every time
+
+
+
+2) when you press back from the image gallery it should take you back to the categories
+
+
+
+3) When you color something it doesn't save for some reason
+
+
+
+4) When you press the check mark after drawing or color it should take you back to all the save drawing or color
+
+
+
+5) The Markers in coloring page need to be center in the middle of the orange background
+
+
+
+6) The colors for the bucket needs to center in the middle of the orange background
+
+
+
+7) The stickers need to be center in the middle if the orange background
+
+
+
+Eight) The pencil and the marker size selection need to have a white ring around the selected size the user can know what they selected
+
+
+
+9) The delete button when press needs to alert the user
+
+when I color something I can't see after I leave
+
+and come back
+
+wish is something that the template already had
