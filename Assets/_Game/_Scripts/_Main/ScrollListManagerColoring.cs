@@ -54,8 +54,8 @@ public class ScrollListManagerColoring : MonoBehaviour
     private int currentCharacter;
     private int firstPos = 0;
 
-    private int texWidth = 2048;
-    private int texHeight = 2048;
+    private int texWidth = 1024;
+    private int texHeight = 1024;
 
     public static Dictionary<string, Sprite> allTexturesDic;
 
@@ -107,7 +107,9 @@ public class ScrollListManagerColoring : MonoBehaviour
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
                 if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
+                    Debug.Log("1024 i : " + i + " j : " + j);
                     transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID , 1024, 1024);
+                    
             }
         }
     }
@@ -118,7 +120,8 @@ public class ScrollListManagerColoring : MonoBehaviour
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
                 if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
-                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 2048, 2048);
+                    Debug.Log("2048 i : " + i + " j : " + j);
+                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 512,512);
             }
         }
     }
@@ -295,7 +298,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         if (saveIndexStringStatic == "ColoringList")
         {
             ColoringBookManager.maskTexIndex = index;
-            ColoringBookManager.maskPath = "gs://decent-tracer-842.appspot.com/" + selectedDirectoryName + "/Big Images/" + selectedFileName + (index+1).ToString() + ".png";
+            ColoringBookManager.maskPath = "gs://decent-tracer-842.appspot.com/" + selectedDirectoryName + "/Thumbs/" + selectedFileName + (index+1).ToString() + ".png";
             ColoringBookManager.ID = saveIndexStringStatic + selectedDirectoryName + index.ToString();
         }
         else
@@ -365,41 +368,93 @@ public class ScrollListManagerColoring : MonoBehaviour
 
         selectedDirectoryName = coloringItems[selectedcolorItem].directoryName;
         selectedFileName = coloringItems[selectedcolorItem].fileName;
+
+        // int index = 0;
         for (int i = 0 ; i < coloringItems[selectedcolorItem].fileNumber; i++ ){
             string path = "gs://decent-tracer-842.appspot.com/" + coloringItems[selectedcolorItem].directoryName + "/Thumbs/" + coloringItems[selectedcolorItem].fileName + (i+1).ToString() + ".png";
 
-            Debug.Log(path);
+            if (!allTexturesDic.ContainsKey(path)) {
 
-            StorageReference reference = storage.GetReferenceFromUrl(path);
+                StorageReference reference = storage.GetReferenceFromUrl(path);
 
-            const long maxAllowedSize = 2 * 1024 * 1024;
-            
-            await reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
-                if (task.IsFaulted || task.IsCanceled) {
-                    Debug.LogException(task.Exception);
-                    // Uh-oh, an error occurred!
-                }
-                else {
-                    byte[] fileContents = task.Result;
-                    Debug.Log(fileContents.Length);
-                    // Texture2D tex = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
-                    // tex.filterMode = FilterMode.Point;
-                    // tex.wrapMode = TextureWrapMode.Clamp;
-                    // tex.LoadRawTextureData(fileContents);
-                    // tex.Apply(false);
-                    Texture2D texture = new Texture2D(512, 512);
-                    texture.LoadImage(fileContents);
+                const long maxAllowedSize = 2 * 1024 * 1024;
+                
+                reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
+                    if (task.IsFaulted || task.IsCanceled) {
+                        Debug.LogException(task.Exception);
+                        // Uh-oh, an error occurred!
+                    }
+                    else {
+                        byte[] fileContents = task.Result;
+                        Debug.Log(fileContents.Length);
+                        // Texture2D tex = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
+                        // tex.filterMode = FilterMode.Point;
+                        // tex.wrapMode = TextureWrapMode.Clamp;
+                        // tex.LoadRawTextureData(fileContents);
+                        // tex.Apply(false);
+                        Texture2D texture = new Texture2D(512, 512);
+                        texture.LoadImage(fileContents);
 
-                    Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 100);
+                        #if UNITY_WEBGL
+                                string file = Application.persistentDataPath + "/Landscape" + path + ".sav";
+                                string fileData = System.Convert.ToBase64String(fileContents);
+                                File.WriteAllText(file, fileData);
+                        #else
+                                PlayerPrefs.SetString(path, System.Convert.ToBase64String(fileContents));
+                                PlayerPrefs.Save();
+                        #endif
 
-                    int panelNum =  (int) (Mathf.Floor((i)/10));
-                    
-                    int itemNum = i - panelNum*10;
-                    transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).GetComponent<Image>().sprite = sp;
-                }
-            });
+                        Sprite sp = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 100);
+
+
+                        Debug.Log(path);
+                        if (fileContents != null)
+                        {
+                            if (allTexturesDic.ContainsKey(path))
+                            {
+                                allTexturesDic[path] = sp;
+                            }
+                            else
+                            {
+                                allTexturesDic.Add(path, sp);
+                            }
+
+                        }
+
+                        string [] nameSplit = path.Split(selectedFileName);
+                        Debug.Log(nameSplit);
+                        string [] extensionSplit = nameSplit[nameSplit.Length-1].Split('.');
+                        Debug.Log(extensionSplit[0]);
+                        int index = int.Parse(extensionSplit[0]) -1;
+
+                        int panelNum =  (int) (Mathf.Floor((index)/10));
+                        
+                        int itemNum = index - panelNum*10;
+                        transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).GetComponent<Image>().sprite = sp;
+
+                        index++;
+                    }
+                });
+            } else {
+                int panelNum =  (int) (Mathf.Floor((i)/10));
+                int itemNum = i - panelNum*10;
+                transform.GetChild(panelNum).GetChild(itemNum).GetChild(0).GetComponent<Image>().sprite = allTexturesDic[path];
+            }
         }
         Debug.Log("Finished");
     }
 
+    private Sprite LoadImage1(string key, bool update = false, int width = 1024, int height = 1024)
+    {
+        texWidth = width;
+        texHeight = height;
+        if (allTexturesDic.ContainsKey(key) && !update)
+        {
+            return allTexturesDic[key];
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
