@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using DanielLochner.Assets.SimpleScrollSnap;
 
 public class MainManager : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class MainManager : MonoBehaviour
     public GameObject returnBtn;
     public GameObject coloringReturnBtn;
     public GameObject coloringSelectedMenu;
+    public Transform ScrolllistColoringObj;
+    [SerializeField] public SimpleScrollSnap scrollSnap;
+    [SerializeField] public Toggle togglePrefab;
+    [SerializeField] public GameObject panelPrefab;
+    [SerializeField] public ToggleGroup toggleGroup;
 
     [System.Serializable]
     public class MenuObject
@@ -28,20 +34,38 @@ public class MainManager : MonoBehaviour
 
     void Start()
     {
-        OnMenuButtonClicked(PlayerPrefs.GetInt("isPainting", 0) == 1);
+        OnMenuButtonClicked();
     }
 
-    public void OnMenuButtonClicked(bool isPainting)
+    public void OnMenuButtonClicked()
     {
-        PlayerPrefs.SetInt("isPainting", isPainting ? 1 : 0);
-        PlayerPrefs.Save();
+        int isColoring =  PlayerPrefs.GetInt("isColoring");
 
-        // paintingMenu.menu.SetActive(isPainting);
-        // coloringMenu.menu.SetActive(!isPainting);
+        if (isColoring > 0){
+            coloringSelectedMenu.SetActive(true);
+            coloringMenu.obj.SetActive(false);  
+            paintingMenu.obj.SetActive(false);  
+            onClickColoringItem();
+            ScrollListManagerColoring.selectedcolorItem = isColoring;
+            DynamicContent dynamicClass = new DynamicContent();
+            dynamicClass.toggleWidth = (togglePrefab.transform as RectTransform).sizeDelta.x * (Screen.width / 2048f); ;
+            dynamicClass.ScrolllistColoringObj = ScrolllistColoringObj;
+            dynamicClass.scrollSnap = scrollSnap;
+            dynamicClass.togglePrefab = togglePrefab;
+            dynamicClass.panelPrefab = panelPrefab;
+            dynamicClass.toggleGroup = toggleGroup;
+            dynamicClass.createColoringPanels();
+        } else if (isColoring == 0) {
+            OnDrawButtonClick();
+        } 
 
-        // cameraObj.backgroundColor = isPainting ? paintingMenu.color : coloringMenu.color;
-        // paintingMenu.image.sprite = isPainting ? paintingMenu.onEnableSprite : paintingMenu.onDisableSprite;
-        // coloringMenu.image.sprite = !isPainting ? coloringMenu.onEnableSprite : coloringMenu.onDisableSprite;
+
+        // paintingMenu.menu.SetActive(isColoring);
+        // coloringMenu.menu.SetActive(!isColoring);
+
+        // cameraObj.backgroundColor = isColoring ? paintingMenu.color : coloringMenu.color;
+        // paintingMenu.image.sprite = isColoring ? paintingMenu.onEnableSprite : paintingMenu.onDisableSprite;
+        // coloringMenu.image.sprite = !isColoring ? coloringMenu.onEnableSprite : coloringMenu.onDisableSprite;
     }
 
     public void PlaySoundClick()
@@ -78,6 +102,7 @@ public class MainManager : MonoBehaviour
             paintingMenu.menu.SetActive(false);
             coloringSelectedMenu.SetActive(false);
             coloringReturnBtn.SetActive(false);
+            returnBtn.SetActive(true);
         } 
         else
         {

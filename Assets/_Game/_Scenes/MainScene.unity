@@ -884,6 +884,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2056837894}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: onClickColoringItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 427202791}
         m_TargetAssemblyTypeName: DanielLochner.Assets.SimpleScrollSnap.DynamicContent,
           Assembly-CSharp
@@ -1808,6 +1820,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!21 &178340072
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/IndependentRoundedCorners
+  m_Shader: {fileID: 4800000, guid: d3beb88e61f88ca4393acdefb005fa70, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _halfSize: {r: 4.9999995, g: 20, b: 0, a: 0}
+    - _r: {r: 20, g: 0, b: 0, a: 20}
+    - _rect2props: {r: 10, g: -0.0000019073486, b: 10.606602, a: 10.606602}
+  m_BuildTextureStacks: []
 --- !u!1 &185054930
 GameObject:
   m_ObjectHideFlags: 0
@@ -2099,7 +2149,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 427202791}
         m_TargetAssemblyTypeName: DanielLochner.Assets.SimpleScrollSnap.DynamicContent,
@@ -2304,6 +2354,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2056837894}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: onClickColoringItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3425,7 +3487,7 @@ MonoBehaviour:
   removeInputField: {fileID: 0}
   scrollSnap: {fileID: 376426246}
   saveIndexString: allDrawItem
-  ScrolllistColoringObj: {fileID: 1769548663}
+  ScrolllistColoringObj: {fileID: 0}
 --- !u!1 &389531528
 GameObject:
   m_ObjectHideFlags: 0
@@ -4456,6 +4518,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2056837894}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: onClickColoringItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5820,44 +5894,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636382939}
   m_CullTransparentMesh: 1
---- !u!21 &661885840
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/IndependentRoundedCorners
-  m_Shader: {fileID: 4800000, guid: d3beb88e61f88ca4393acdefb005fa70, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _halfSize: {r: 4.9999995, g: 20, b: 0, a: 0}
-    - _r: {r: 20, g: 0, b: 0, a: 20}
-    - _rect2props: {r: 10, g: -0.0000019073486, b: 10.606602, a: 10.606602}
-  m_BuildTextureStacks: []
 --- !u!1 &668474794
 GameObject:
   m_ObjectHideFlags: 0
@@ -7581,6 +7617,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2056837894}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: onClickColoringItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 427202791}
         m_TargetAssemblyTypeName: DanielLochner.Assets.SimpleScrollSnap.DynamicContent,
           Assembly-CSharp
@@ -8462,6 +8510,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063935605}
   m_CullTransparentMesh: 1
+--- !u!21 &1066239910
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/IndependentRoundedCorners
+  m_Shader: {fileID: 4800000, guid: d3beb88e61f88ca4393acdefb005fa70, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _halfSize: {r: 144.9301, g: 20, b: 0, a: 0}
+    - _r: {r: 20, g: 0, b: 0, a: 20}
+    - _rect2props: {r: 10.000015, g: 0, b: 109.55213, a: 109.55213}
+  m_BuildTextureStacks: []
 --- !u!1 &1067860719
 GameObject:
   m_ObjectHideFlags: 0
@@ -9441,6 +9527,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2056837894}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: onClickColoringItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12157,44 +12255,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585422040}
   m_CullTransparentMesh: 0
---- !u!21 &1588627163
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/IndependentRoundedCorners
-  m_Shader: {fileID: 4800000, guid: d3beb88e61f88ca4393acdefb005fa70, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _halfSize: {r: 144.9301, g: 20, b: 0, a: 0}
-    - _r: {r: 20, g: 0, b: 0, a: 20}
-    - _rect2props: {r: 10.000015, g: 0, b: 109.55213, a: 109.55213}
-  m_BuildTextureStacks: []
 --- !u!1 &1603395346
 GameObject:
   m_ObjectHideFlags: 0
@@ -12623,6 +12683,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1631819901}
         m_TargetAssemblyTypeName: ColoringLock, Assembly-CSharp
         m_MethodName: onClickItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2056837894}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: onClickColoringItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13924,6 +13996,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2056837894}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: onClickColoringItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 427202791}
         m_TargetAssemblyTypeName: DanielLochner.Assets.SimpleScrollSnap.DynamicContent,
           Assembly-CSharp
@@ -14114,7 +14198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 661885840}
+  m_Material: {fileID: 178340072}
   m_Color: {r: 0, g: 0.7176471, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -15003,7 +15087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1588627163}
+  m_Material: {fileID: 1066239910}
   m_Color: {r: 0, g: 0.7176471, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -15752,6 +15836,13 @@ MonoBehaviour:
   returnBtn: {fileID: 1910518647}
   coloringReturnBtn: {fileID: 201038748}
   coloringSelectedMenu: {fileID: 1075910006}
+  ScrolllistColoringObj: {fileID: 44765815}
+  scrollSnap: {fileID: 427202789}
+  togglePrefab: {fileID: 1342908715781195965, guid: 3db685d3cd856954aa07c4ce383481cf,
+    type: 3}
+  panelPrefab: {fileID: 1281329443266664999, guid: 4e7596ca44c621241812bf1d736b3184,
+    type: 3}
+  toggleGroup: {fileID: 69491479}
 --- !u!1 &2092113854
 GameObject:
   m_ObjectHideFlags: 0

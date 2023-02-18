@@ -10,15 +10,15 @@ namespace DanielLochner.Assets.SimpleScrollSnap
     public class DynamicContent : MonoBehaviour
     {
         #region Fields
-        [SerializeField] private GameObject panelPrefab;
-        [SerializeField] private Toggle togglePrefab;
-        [SerializeField] private ToggleGroup toggleGroup;
-        [SerializeField] private InputField addInputField, removeInputField;
-        [SerializeField] private SimpleScrollSnap scrollSnap;
+        [SerializeField] public GameObject panelPrefab;
+        [SerializeField] public Toggle togglePrefab;
+        [SerializeField] public ToggleGroup toggleGroup;
+        [SerializeField] public InputField addInputField, removeInputField;
+        [SerializeField] public SimpleScrollSnap scrollSnap;
         public string saveIndexString = "allDrawItem";
         public Transform ScrolllistColoringObj;
 
-        private float toggleWidth;
+        public float toggleWidth;
         #endregion
 
         #region Methods
