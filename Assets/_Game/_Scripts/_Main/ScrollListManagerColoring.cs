@@ -82,6 +82,9 @@ public class ScrollListManagerColoring : MonoBehaviour
 
         // GetFirebaseData();
         // LoadAllTexture();
+
+        PlayerPrefs.SetInt("isColoring", -1);
+        PlayerPrefs.Save();
     }
 
     private void SetNewPos(int num)
@@ -300,11 +303,13 @@ public class ScrollListManagerColoring : MonoBehaviour
             ColoringBookManager.maskTexIndex = index;
             ColoringBookManager.maskPath = "gs://decent-tracer-842.appspot.com/" + selectedDirectoryName + "/Thumbs/" + selectedFileName + (index+1).ToString() + ".png";
             ColoringBookManager.ID = saveIndexStringStatic + selectedDirectoryName + index.ToString();
+            PlayerPrefs.SetInt("isColoring", selectedcolorItem); 
         }
         else
         {
             ColoringBookManager.maskTexIndex = -1;
             ColoringBookManager.ID = saveIndexStringStatic + index.ToString();
+            PlayerPrefs.SetInt("isColoring", 0); 
         }
 
         // PlayerPrefs.SetInt(saveIndexStringStatic, 0);
@@ -325,10 +330,10 @@ public class ScrollListManagerColoring : MonoBehaviour
     // Draw panel remove item
     public void RemoveItems() {
         int allItemNum = PlayerPrefs.GetInt("allDrawItem");
-        PlayerPrefs.SetInt("allDrawItem", 0);
-        PlayerPrefs.SetInt("PaintingList", 0);
-        PlayerPrefs.SetInt("ColoringList", 0);
-        PlayerPrefs.SetInt("firstDraw", 0);
+        // PlayerPrefs.SetInt("allDrawItem", 0);
+        // PlayerPrefs.SetInt("PaintingList", 0);
+        // PlayerPrefs.SetInt("ColoringList", 0);
+        // PlayerPrefs.SetInt("firstDraw", 0);
         int panelNum =  (int) (Mathf.Floor((allItemNum+1)/10)) + 1;
         int remainItemNum = allItemNum - (panelNum-1)*10;
    
