@@ -99,6 +99,7 @@ public class ColoringBookManager : MonoBehaviour
     {
         public string name;
         public Image image;
+        public GameObject selectedImage;
         public List<Sprite> sprites;
     }
 
@@ -240,8 +241,11 @@ public class ColoringBookManager : MonoBehaviour
         {
             GetComponent<Renderer>().material = maskTexMaterial;
 
+            // texWidth = maskTex.width;
+            // texHeight = maskTex.height;
             texWidth = maskTex.width;
             texHeight = maskTex.height;
+
             GetComponent<Renderer>().material.SetTexture("_MaskTex", maskTex);
 
             useLockArea = true;
@@ -922,42 +926,58 @@ public class ColoringBookManager : MonoBehaviour
 
     public void OnChangeBrushSizeButtonClicked1()
     {
-        brushSize = 8;
+        brushSize = 26;
 
         brushSizeButton.image.sprite = brushSizeButton.sprites[0];
         brushSizeButton1.image.sprite = brushSizeButton.sprites[1];
         brushSizeButton2.image.sprite = brushSizeButton.sprites[1];
         brushSizeButton3.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton.selectedImage.SetActive(true);
+        brushSizeButton1.selectedImage.SetActive(false);
+        brushSizeButton2.selectedImage.SetActive(false);
+        brushSizeButton3.selectedImage.SetActive(false);
     }
 
     public void OnChangeBrushSizeButtonClicked2()
     {
-        brushSize = 14;
+        brushSize = 20;
 
         brushSizeButton.image.sprite = brushSizeButton.sprites[1];
         brushSizeButton1.image.sprite = brushSizeButton.sprites[0];
         brushSizeButton2.image.sprite = brushSizeButton.sprites[1];
         brushSizeButton3.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton.selectedImage.SetActive(false);
+        brushSizeButton1.selectedImage.SetActive(true);
+        brushSizeButton2.selectedImage.SetActive(false);
+        brushSizeButton3.selectedImage.SetActive(false);
     }
     
     public void OnChangeBrushSizeButtonClicked3()
     {
-        brushSize = 20;
+        brushSize = 14;
 
         brushSizeButton.image.sprite = brushSizeButton.sprites[1];
         brushSizeButton1.image.sprite = brushSizeButton.sprites[1];
         brushSizeButton2.image.sprite = brushSizeButton.sprites[0];
         brushSizeButton3.image.sprite = brushSizeButton.sprites[1];
+        brushSizeButton.selectedImage.SetActive(false);
+        brushSizeButton1.selectedImage.SetActive(false);
+        brushSizeButton2.selectedImage.SetActive(true);
+        brushSizeButton3.selectedImage.SetActive(false);
     }
 
     public void OnChangeBrushSizeButtonClicked4()
     {
-        brushSize = 26;
+        brushSize = 8;
 
         brushSizeButton.image.sprite = brushSizeButton.sprites[1];
         brushSizeButton1.image.sprite = brushSizeButton.sprites[1];
         brushSizeButton2.image.sprite = brushSizeButton.sprites[1];
         brushSizeButton3.image.sprite = brushSizeButton.sprites[0];
+        brushSizeButton.selectedImage.SetActive(false);
+        brushSizeButton1.selectedImage.SetActive(false);
+        brushSizeButton2.selectedImage.SetActive(false);
+        brushSizeButton3.selectedImage.SetActive(true);
     }
 
     public void OnUndoButtonClicked()

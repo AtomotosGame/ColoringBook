@@ -83,7 +83,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         // GetFirebaseData();
         // LoadAllTexture();
 
-        PlayerPrefs.SetInt("isColoring", -1);
+        PlayerPrefs.SetInt("isColoring", -2);
         PlayerPrefs.Save();
     }
 
@@ -110,7 +110,6 @@ public class ScrollListManagerColoring : MonoBehaviour
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
                 if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
-                    Debug.Log("1024 i : " + i + " j : " + j);
                     transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + (i+j*10).ToString(), saveIndexString + (i+j*10).ToString() == ColoringBookManager.ID , 1024, 1024);
                     
             }
@@ -123,8 +122,13 @@ public class ScrollListManagerColoring : MonoBehaviour
         for (int j = 0; j < transform.childCount; j++){
             for (int i = 0; i < transform.GetChild(j).childCount; i++){
                 if (transform.GetChild(j).GetChild(i).transform.gameObject.activeSelf)
-                    Debug.Log("2048 i : " + i + " j : " + j);
-                    transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 512,512);
+                    Debug.Log(selectedcolorItem);
+                    Debug.Log(coloringItems[selectedcolorItem].directoryName);
+                    Debug.Log(ColoringBookManager.ID);
+                    if (selectedcolorItem == 1 ) 
+                        transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 512,414);    
+                    else
+                        transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 512,512);
             }
         }
     }
@@ -162,6 +166,11 @@ public class ScrollListManagerColoring : MonoBehaviour
             }
 #endif
 
+            // byte[] pixels = new byte[texWidth * texHeight * 4];
+            // System.Array.Copy(pixels, new byte[texWidth * texHeight * 4], pixels.Length);
+            // PlayerPrefs.SetString(key, System.Convert.ToBase64String(pixels));
+            // PlayerPrefs.SetString(key, null);
+            // PlayerPrefs.Save();
             if (loadPixels != null)
             {
                 Texture2D tex = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
@@ -295,6 +304,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         
         if (PlayerPrefs.GetInt("allDrawItem") == null || index > PlayerPrefs.GetInt("allDrawItem") ) {
             PlayerPrefs.SetInt("allDrawItem", index);
+            PlayerPrefs.Save();
         }
 
 
@@ -304,13 +314,17 @@ public class ScrollListManagerColoring : MonoBehaviour
             ColoringBookManager.maskPath = "gs://decent-tracer-842.appspot.com/" + selectedDirectoryName + "/Thumbs/" + selectedFileName + (index+1).ToString() + ".png";
             ColoringBookManager.ID = saveIndexStringStatic + selectedDirectoryName + index.ToString();
             PlayerPrefs.SetInt("isColoring", selectedcolorItem); 
+            PlayerPrefs.Save();
         }
         else
         {
             ColoringBookManager.maskTexIndex = -1;
             ColoringBookManager.ID = saveIndexStringStatic + index.ToString();
-            PlayerPrefs.SetInt("isColoring", 0); 
+            PlayerPrefs.SetInt("isColoring", -1); 
+            PlayerPrefs.Save();
         }
+
+
 
         // PlayerPrefs.SetInt(saveIndexStringStatic, 0);
         // PlayerPrefs.SetInt("allDrawItem", 0);

@@ -66,15 +66,15 @@ fixed 4) When you press the check mark after drawing or color it should take you
  
 
 
-5) The Markers in coloring page need to be center in the middle of the orange background
+fixed 5) The Markers in coloring page need to be center in the middle of the orange background
 
 
 
-6) The colors for the bucket needs to center in the middle of the orange background
+fixed 6) The colors for the bucket needs to center in the middle of the orange background
 
 
 
-7) The stickers need to be center in the middle if the orange background
+fixed 7) The stickers need to be center in the middle if the orange background
 
 
 
