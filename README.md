@@ -62,8 +62,8 @@ fixed 2) when you press back from the image gallery it should take you back to t
 
 
 
-4) When you press the check mark after drawing or color it should take you back to all the save drawing or color
-
+fixed 4) When you press the check mark after drawing or color it should take you back to all the save drawing or color
+ 
 
 
 5) The Markers in coloring page need to be center in the middle of the orange background

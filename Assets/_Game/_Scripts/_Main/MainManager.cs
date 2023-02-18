@@ -113,6 +113,8 @@ public class MainManager : MonoBehaviour
             coloringMenu.obj.SetActive(true);
             returnBtn.SetActive(!returnBtn.activeSelf);
         }
+        PlayerPrefs.SetInt("isColoring", -1);
+        PlayerPrefs.Save();
     }
 
     public void onClickColoringItem() {

@@ -299,7 +299,7 @@ public class ColoringBookManager : MonoBehaviour
             System.Array.Copy(pixels, undoPixels[0], pixels.Length);
         }
 
-        System.Array.Copy(pixels, undoPixels[0], pixels.Length);
+        // System.Array.Copy(pixels, undoPixels[0], pixels.Length);
 
         // locking mask enabled
         if (useLockArea)
