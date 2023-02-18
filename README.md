@@ -50,7 +50,7 @@ FeedBack
 
 Look a lot of functionality that comes with the templates are not functioning
 
-1) The images takes too long to load and also it should be cache so that they are not reloading every time
+fixed  1) The images takes too long to load and also it should be cache so that they are not reloading every time
 
 
 
