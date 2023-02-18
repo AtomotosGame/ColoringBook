@@ -7,6 +7,7 @@ public class MainManager : MonoBehaviour
     public MenuObject coloringMenu, paintingMenu;
     public GameObject settingMenu;
     public GameObject returnBtn;
+    public GameObject coloringReturnBtn;
     public GameObject coloringSelectedMenu;
 
     [System.Serializable]
@@ -71,12 +72,25 @@ public class MainManager : MonoBehaviour
         coloringMenu.obj.SetActive(!coloringMenu.obj.activeSelf);
         returnBtn.SetActive(!returnBtn.activeSelf);
     }
-    public void OnReturnButtonClick() {
-        coloringMenu.menu.SetActive(false);
-        paintingMenu.menu.SetActive(false);
-        coloringSelectedMenu.SetActive(false);
-        paintingMenu.obj.SetActive(true);
-        coloringMenu.obj.SetActive(true);
-        returnBtn.SetActive(!returnBtn.activeSelf);
+    public void OnReturnButtonClick(bool coloringButton) {
+        if (coloringButton) {
+            coloringMenu.menu.SetActive(true);
+            paintingMenu.menu.SetActive(false);
+            coloringSelectedMenu.SetActive(false);
+            coloringReturnBtn.SetActive(false);
+        } 
+        else
+        {
+            coloringMenu.menu.SetActive(false);
+            paintingMenu.menu.SetActive(false);
+            coloringSelectedMenu.SetActive(false);
+            paintingMenu.obj.SetActive(true);
+            coloringMenu.obj.SetActive(true);
+            returnBtn.SetActive(!returnBtn.activeSelf);
+        }
+    }
+
+    public void onClickColoringItem() {
+        coloringReturnBtn.SetActive(true);
     }
 }
