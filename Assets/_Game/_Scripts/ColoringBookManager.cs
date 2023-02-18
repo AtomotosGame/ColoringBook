@@ -421,7 +421,7 @@ public class ColoringBookManager : MonoBehaviour
 
         panelEndPos = PanelColors[current].localPosition;
         panelStartPos = panelEndPos;
-        panelStartPos.y += (h * 2);
+        panelStartPos.y += (h * 1.7f);
 
         PanelColors[current].localPosition = panelStartPos;
     }
@@ -843,7 +843,7 @@ public class ColoringBookManager : MonoBehaviour
                     if (i == selectedNumber)
                     {
                         min.y = 0.34f;
-                        max.y = 1f;
+                        max.y = 1.15f;
                     }
                     else
                     {
@@ -862,7 +862,7 @@ public class ColoringBookManager : MonoBehaviour
                     if (i == selectedNumber)
                     {
                         min.y = 0.34f;
-                        max.y = 1f;
+                        max.y = 1.15f;
                     }
                     else
                     {
