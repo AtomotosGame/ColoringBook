@@ -241,8 +241,11 @@ public class ColoringBookManager : MonoBehaviour
         {
             GetComponent<Renderer>().material = maskTexMaterial;
 
+            // texWidth = maskTex.width;
+            // texHeight = maskTex.height;
             texWidth = maskTex.width;
             texHeight = maskTex.height;
+
             GetComponent<Renderer>().material.SetTexture("_MaskTex", maskTex);
 
             useLockArea = true;

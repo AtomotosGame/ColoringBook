@@ -41,7 +41,7 @@ public class MainManager : MonoBehaviour
     {
         int isColoring =  PlayerPrefs.GetInt("isColoring");
 
-        if (isColoring > 0){
+        if (isColoring > -1){
             coloringSelectedMenu.SetActive(true);
             coloringMenu.obj.SetActive(false);  
             paintingMenu.obj.SetActive(false);  
@@ -55,11 +55,14 @@ public class MainManager : MonoBehaviour
             dynamicClass.panelPrefab = panelPrefab;
             dynamicClass.toggleGroup = toggleGroup;
             dynamicClass.createColoringPanels();
-        } else if (isColoring == 0) {
+        } else if (isColoring == -1) {
             OnDrawButtonClick();
         } 
 
+        PlayerPrefs.SetInt("isColoring", -2);
+        PlayerPrefs.Save();
 
+        
         // paintingMenu.menu.SetActive(isColoring);
         // coloringMenu.menu.SetActive(!isColoring);
 
@@ -81,6 +84,7 @@ public class MainManager : MonoBehaviour
         
         if (PlayerPrefs.GetInt("allDrawItem") == 0 && PlayerPrefs.GetInt("firstDraw") != 1) {
             PlayerPrefs.SetInt("firstDraw", 1);
+            PlayerPrefs.Save();
             ScrollListManagerColoring.saveIndexStringStatic = "PaintingList";
             ScrollListManagerColoring.LoadGame(0);
         } else {
@@ -113,7 +117,7 @@ public class MainManager : MonoBehaviour
             coloringMenu.obj.SetActive(true);
             returnBtn.SetActive(!returnBtn.activeSelf);
         }
-        PlayerPrefs.SetInt("isColoring", -1);
+        PlayerPrefs.SetInt("isColoring", -2);
         PlayerPrefs.Save();
     }
 
