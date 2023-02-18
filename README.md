@@ -54,11 +54,11 @@ fixed  1) The images takes too long to load and also it should be cache so that 
 
 
 
-2) when you press back from the image gallery it should take you back to the categories
+fixed 2) when you press back from the image gallery it should take you back to the categories
 
 
 
-3) When you color something it doesn't save for some reason
+?? 3) When you color something it doesn't save for some reason
 
 
 
