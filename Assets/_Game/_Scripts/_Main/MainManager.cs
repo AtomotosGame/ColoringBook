@@ -41,6 +41,8 @@ public class MainManager : MonoBehaviour
     {
         int isColoring =  PlayerPrefs.GetInt("isColoring");
 
+        Debug.Log(isColoring);
+
         if (isColoring > -1){
             coloringSelectedMenu.SetActive(true);
             coloringMenu.obj.SetActive(false);  
