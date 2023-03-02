@@ -175,10 +175,10 @@ public class ColoringBookManager : MonoBehaviour
         else
         {
             // maskTex = DuplicateTexture(maskTexList[maskTexIndex].texture);
-            maskTex = DuplicateTexture(ScrollListManagerColoring.allTexturesDic[maskPath].texture);
-            // GetFirebaseData();
+            // maskTex = DuplicateTexture(ScrollListManagerColoring.allTexturesDic[maskPath].texture);
+            GetFirebaseData();
         }
-        InitializeEverything();
+        // InitializeEverything();
     }
 
     public async void GetFirebaseData () {
@@ -188,7 +188,7 @@ public class ColoringBookManager : MonoBehaviour
         Debug.Log(maskPath);
         StorageReference reference = storage.GetReferenceFromUrl(maskPath);
 
-        const long maxAllowedSize = 1024 * 1024;
+        const long maxAllowedSize = 2 * 1024 * 1024;
         
         await reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
             if (task.IsFaulted || task.IsCanceled) {

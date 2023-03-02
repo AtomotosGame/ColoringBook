@@ -126,9 +126,9 @@ public class ScrollListManagerColoring : MonoBehaviour
                     Debug.Log(coloringItems[selectedcolorItem].directoryName);
                     Debug.Log(ColoringBookManager.ID);
                     if (selectedcolorItem == 1 ) 
-                        transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 512,414);    
+                        transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 1024,1024);    
                     else
-                        transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 512,512);
+                        transform.GetChild(j).GetChild(i).GetComponent<Image>().sprite = LoadImage(saveIndexString + coloringItems[selectedcolorItem].directoryName + (i+j*10).ToString(), saveIndexString + coloringItems[selectedcolorItem].directoryName  + (i+j*10).ToString() == ColoringBookManager.ID, 1024,1024);
             }
         }
     }
@@ -311,7 +311,7 @@ public class ScrollListManagerColoring : MonoBehaviour
         if (saveIndexStringStatic == "ColoringList")
         {
             ColoringBookManager.maskTexIndex = index;
-            ColoringBookManager.maskPath = "gs://decent-tracer-842.appspot.com/" + selectedDirectoryName + "/Thumbs/" + selectedFileName + (index+1).ToString() + ".png";
+            ColoringBookManager.maskPath = "gs://decent-tracer-842.appspot.com/" + selectedDirectoryName + "/Big Images/1024/" + selectedFileName + (index+1).ToString() + ".png";
             ColoringBookManager.ID = saveIndexStringStatic + selectedDirectoryName + index.ToString();
             PlayerPrefs.SetInt("isColoring", selectedcolorItem); 
             PlayerPrefs.Save();
