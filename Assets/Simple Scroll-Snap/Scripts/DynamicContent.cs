@@ -13,6 +13,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         [SerializeField] public GameObject panelPrefab;
         [SerializeField] public Toggle togglePrefab;
         [SerializeField] public ToggleGroup toggleGroup;
+        [SerializeField] public Transform toogleTransform;
         [SerializeField] public InputField addInputField, removeInputField;
         [SerializeField] public SimpleScrollSnap scrollSnap;
         public string saveIndexString = "allDrawItem";
@@ -70,9 +71,9 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         public void Add(int index)
         {
             // Pagination
-            Toggle toggle = Instantiate(togglePrefab, scrollSnap.Pagination.transform.position + new Vector3(toggleWidth * (scrollSnap.NumberOfPanels + 1), 0, 0), Quaternion.identity, scrollSnap.Pagination.transform);
+            Toggle toggle = Instantiate(togglePrefab, scrollSnap.Pagination.transform.position + new Vector3(toggleWidth * (scrollSnap.NumberOfPanels * 2), 0, 0), Quaternion.identity, scrollSnap.Pagination.transform);
             toggle.group = toggleGroup;
-            scrollSnap.Pagination.transform.position -= new Vector3(toggleWidth / 2f, 0, 0);
+            scrollSnap.Pagination.transform.position  = toogleTransform.transform.position - new Vector3(toggleWidth * (scrollSnap.NumberOfPanels + 1), 0, 0);
             // Panel
             // panelPrefab.GetComponent<Image>().color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
             scrollSnap.Add(panelPrefab, index);
