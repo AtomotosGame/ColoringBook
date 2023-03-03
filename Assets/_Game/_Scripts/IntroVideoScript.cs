@@ -5,7 +5,7 @@ using UnityEngine;
 public class IntroVideoScript : MonoBehaviour
 {
     private float bombTimer = 0f;
-    private float endTime = 7f;
+    private float endTime = 10f;
     public static bool videoplay = true;
     // Start is called before the first frame update
     void Start()
