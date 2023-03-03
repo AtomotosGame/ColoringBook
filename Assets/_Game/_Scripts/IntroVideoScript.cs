@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class IntroVideoScript : MonoBehaviour
 {
-    public GameObject VideoTexture;
     private float bombTimer = 0f;
-    private float endTime = 5f;
-
-    void Awake () {
-        DontDestroyOnLoad (transform.gameObject);
-    }
-
+    private float endTime = 7f;
+    public static bool videoplay = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +17,13 @@ public class IntroVideoScript : MonoBehaviour
     void Update()
     {
         bombTimer += Time.deltaTime;
- 
+    
+        if (!videoplay) 
+            gameObject.SetActive(false);
+
         if(bombTimer > endTime)
-            VideoTexture.SetActive(false);
+            videoplay = false;
+        
     }
 
     public void stopVideo() {
