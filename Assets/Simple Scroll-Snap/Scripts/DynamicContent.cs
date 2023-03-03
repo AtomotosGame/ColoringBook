@@ -73,7 +73,9 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             // Pagination
             Toggle toggle = Instantiate(togglePrefab, scrollSnap.Pagination.transform.position + new Vector3(toggleWidth * (scrollSnap.NumberOfPanels * 2), 0, 0), Quaternion.identity, scrollSnap.Pagination.transform);
             toggle.group = toggleGroup;
-            scrollSnap.Pagination.transform.position  = toogleTransform.transform.position - new Vector3(toggleWidth * (scrollSnap.NumberOfPanels + 1), 0, 0);
+            // print("toogleTransform.transform.position");
+            // print(toogleTransform.transform.position);
+            scrollSnap.Pagination.transform.position  = new Vector3(489 - toggleWidth * (scrollSnap.NumberOfPanels + 1), 52, 0);
             // Panel
             // panelPrefab.GetComponent<Image>().color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
             scrollSnap.Add(panelPrefab, index);
