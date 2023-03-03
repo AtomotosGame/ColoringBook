@@ -80,6 +80,7 @@
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\OpenURLOnClick.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\WindowDragTilt.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\Other\LoadLevelOnClick.cs" />
+     <Compile Include="Assets\_Game\_Scripts\IntroVideoScript.cs" />
      <Compile Include="Assets\_Game\_Scripts\JCSUnity\JCS_UnityObject.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UIEquipmentSlot.cs" />
